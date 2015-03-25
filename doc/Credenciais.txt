@@ -1,0 +1,9 @@
+Maquina Virtual: 52.28.14.24
+
+FTP
+User: user
+Password: saavedr@963
+
+SQL Server
+User: developer
+Password: saavedr@963
