@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="restriphotoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Condicao">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="segundaStatus" Type="int" />
+          <Property Name="tercaStatus" Type="int" />
+          <Property Name="quartaStatus" Type="int" />
+          <Property Name="quintaStatus" Type="int" />
+          <Property Name="sextaStatus" Type="int" />
+          <Property Name="sabadoStatus" Type="int" />
+          <Property Name="domingoStatus" Type="int" />
+          <Property Name="idRequisito" Type="bigint" />
+        </EntityType>
+        <EntityType Name="CondicaoLua">
+          <Key>
+            <PropertyRef Name="idCondicao" />
+            <PropertyRef Name="idLua" />
+          </Key>
+          <Property Name="idCondicao" Type="bigint" Nullable="false" />
+          <Property Name="idLua" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CondicaoMares">
+          <Key>
+            <PropertyRef Name="idCondicao" />
+            <PropertyRef Name="idMares" />
+          </Key>
+          <Property Name="idCondicao" Type="bigint" Nullable="false" />
+          <Property Name="idMares" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CondicaoTempo">
+          <Key>
+            <PropertyRef Name="idCondicao" />
+            <PropertyRef Name="idTempo" />
+          </Key>
+          <Property Name="idCondicao" Type="bigint" Nullable="false" />
+          <Property Name="idTempo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstadoLua">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="EstadoMares">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="EstadoTempo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Porto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Requisito">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="local" Type="varchar" MaxLength="1000" />
+          <Property Name="localizacao" Type="varchar" MaxLength="150" />
+          <Property Name="idUtilizador" Type="bigint" Nullable="false" />
+          <Property Name="idPorto" Type="int" />
+        </EntityType>
+        <EntityType Name="Utilizador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="600" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK_CondicaoLua_Condicao">
+          <End Role="Condicao" Type="Self.Condicao" Multiplicity="1" />
+          <End Role="CondicaoLua" Type="Self.CondicaoLua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Condicao">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CondicaoLua">
+              <PropertyRef Name="idCondicao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CondicaoLua_Lua">
+          <End Role="EstadoLua" Type="Self.EstadoLua" Multiplicity="1" />
+          <End Role="CondicaoLua" Type="Self.CondicaoLua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoLua">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CondicaoLua">
+              <PropertyRef Name="idLua" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CondicaoMares_Condicao">
+          <End Role="Condicao" Type="Self.Condicao" Multiplicity="1" />
+          <End Role="CondicaoMares" Type="Self.CondicaoMares" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Condicao">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CondicaoMares">
+              <PropertyRef Name="idCondicao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CondicaoMares_Mares">
+          <End Role="EstadoMares" Type="Self.EstadoMares" Multiplicity="1" />
+          <End Role="CondicaoMares" Type="Self.CondicaoMares" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoMares">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CondicaoMares">
+              <PropertyRef Name="idMares" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CondicaoTempo_Condicao">
+          <End Role="Condicao" Type="Self.Condicao" Multiplicity="1" />
+          <End Role="CondicaoTempo" Type="Self.CondicaoTempo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Condicao">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CondicaoTempo">
+              <PropertyRef Name="idCondicao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CondicaoTempo_Tempo">
+          <End Role="EstadoTempo" Type="Self.EstadoTempo" Multiplicity="1" />
+          <End Role="CondicaoTempo" Type="Self.CondicaoTempo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoTempo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CondicaoTempo">
+              <PropertyRef Name="idTempo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Porto_Requisitos">
+          <End Role="Porto" Type="Self.Porto" Multiplicity="0..1" />
+          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Porto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Requisito">
+              <PropertyRef Name="idPorto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requisito_Condicao">
+          <End Role="Requisito" Type="Self.Requisito" Multiplicity="0..1" />
+          <End Role="Condicao" Type="Self.Condicao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requisito">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Condicao">
+              <PropertyRef Name="idRequisito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilizador_Requisitos">
+          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizador">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Requisito">
+              <PropertyRef Name="idUtilizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="restriphotoModelStoreContainer">
+          <EntitySet Name="Condicao" EntityType="Self.Condicao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CondicaoLua" EntityType="Self.CondicaoLua" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CondicaoMares" EntityType="Self.CondicaoMares" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CondicaoTempo" EntityType="Self.CondicaoTempo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoLua" EntityType="Self.EstadoLua" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoMares" EntityType="Self.EstadoMares" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoTempo" EntityType="Self.EstadoTempo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Porto" EntityType="Self.Porto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requisito" EntityType="Self.Requisito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilizador" EntityType="Self.Utilizador" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CondicaoLua_Condicao" Association="Self.FK_CondicaoLua_Condicao">
+            <End Role="Condicao" EntitySet="Condicao" />
+            <End Role="CondicaoLua" EntitySet="CondicaoLua" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CondicaoLua_Lua" Association="Self.FK_CondicaoLua_Lua">
+            <End Role="EstadoLua" EntitySet="EstadoLua" />
+            <End Role="CondicaoLua" EntitySet="CondicaoLua" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CondicaoMares_Condicao" Association="Self.FK_CondicaoMares_Condicao">
+            <End Role="Condicao" EntitySet="Condicao" />
+            <End Role="CondicaoMares" EntitySet="CondicaoMares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CondicaoMares_Mares" Association="Self.FK_CondicaoMares_Mares">
+            <End Role="EstadoMares" EntitySet="EstadoMares" />
+            <End Role="CondicaoMares" EntitySet="CondicaoMares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CondicaoTempo_Condicao" Association="Self.FK_CondicaoTempo_Condicao">
+            <End Role="Condicao" EntitySet="Condicao" />
+            <End Role="CondicaoTempo" EntitySet="CondicaoTempo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CondicaoTempo_Tempo" Association="Self.FK_CondicaoTempo_Tempo">
+            <End Role="EstadoTempo" EntitySet="EstadoTempo" />
+            <End Role="CondicaoTempo" EntitySet="CondicaoTempo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Porto_Requisitos" Association="Self.FK_Porto_Requisitos">
+            <End Role="Porto" EntitySet="Porto" />
+            <End Role="Requisito" EntitySet="Requisito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requisito_Condicao" Association="Self.FK_Requisito_Condicao">
+            <End Role="Requisito" EntitySet="Requisito" />
+            <End Role="Condicao" EntitySet="Condicao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilizador_Requisitos" Association="Self.FK_Utilizador_Requisitos">
+            <End Role="Utilizador" EntitySet="Utilizador" />
+            <End Role="Requisito" EntitySet="Requisito" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="restriphotoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Condicao">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="segundaStatus" Type="Int32" />
+          <Property Name="tercaStatus" Type="Int32" />
+          <Property Name="quartaStatus" Type="Int32" />
+          <Property Name="quintaStatus" Type="Int32" />
+          <Property Name="sextaStatus" Type="Int32" />
+          <Property Name="sabadoStatus" Type="Int32" />
+          <Property Name="domingoStatus" Type="Int32" />
+          <Property Name="idRequisito" Type="Int64" />
+          <NavigationProperty Name="Requisito" Relationship="Self.FK_Requisito_Condicao" FromRole="Condicao" ToRole="Requisito" />
+          <NavigationProperty Name="EstadoLua" Relationship="Self.CondicaoLua" FromRole="Condicao" ToRole="EstadoLua" />
+          <NavigationProperty Name="EstadoMares" Relationship="Self.CondicaoMares" FromRole="Condicao" ToRole="EstadoMares" />
+          <NavigationProperty Name="EstadoTempo" Relationship="Self.CondicaoTempo" FromRole="Condicao" ToRole="EstadoTempo" />
+        </EntityType>
+        <EntityType Name="EstadoLua">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Condicao" Relationship="Self.CondicaoLua" FromRole="EstadoLua" ToRole="Condicao" />
+        </EntityType>
+        <EntityType Name="EstadoMares">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Condicao" Relationship="Self.CondicaoMares" FromRole="EstadoMares" ToRole="Condicao" />
+        </EntityType>
+        <EntityType Name="EstadoTempo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Condicao" Relationship="Self.CondicaoTempo" FromRole="EstadoTempo" ToRole="Condicao" />
+        </EntityType>
+        <EntityType Name="Porto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Requisito" Relationship="Self.FK_Porto_Requisitos" FromRole="Porto" ToRole="Requisito" />
+        </EntityType>
+        <EntityType Name="Requisito">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="local" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="localizacao" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="idUtilizador" Type="Int64" Nullable="false" />
+          <Property Name="idPorto" Type="Int32" />
+          <NavigationProperty Name="Condicao" Relationship="Self.FK_Requisito_Condicao" FromRole="Requisito" ToRole="Condicao" />
+          <NavigationProperty Name="Porto" Relationship="Self.FK_Porto_Requisitos" FromRole="Requisito" ToRole="Porto" />
+          <NavigationProperty Name="Utilizador" Relationship="Self.FK_Utilizador_Requisitos" FromRole="Requisito" ToRole="Utilizador" />
+        </EntityType>
+        <EntityType Name="Utilizador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="600" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Requisito" Relationship="Self.FK_Utilizador_Requisitos" FromRole="Utilizador" ToRole="Requisito" />
+        </EntityType>
+        <Association Name="FK_Requisito_Condicao">
+          <End Role="Requisito" Type="Self.Requisito" Multiplicity="0..1" />
+          <End Role="Condicao" Type="Self.Condicao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requisito">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Condicao">
+              <PropertyRef Name="idRequisito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Porto_Requisitos">
+          <End Role="Porto" Type="Self.Porto" Multiplicity="0..1" />
+          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Porto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Requisito">
+              <PropertyRef Name="idPorto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilizador_Requisitos">
+          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizador">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Requisito">
+              <PropertyRef Name="idUtilizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CondicaoLua">
+          <End Role="Condicao" Type="Self.Condicao" Multiplicity="*" />
+          <End Role="EstadoLua" Type="Self.EstadoLua" Multiplicity="*" />
+        </Association>
+        <Association Name="CondicaoMares">
+          <End Role="Condicao" Type="Self.Condicao" Multiplicity="*" />
+          <End Role="EstadoMares" Type="Self.EstadoMares" Multiplicity="*" />
+        </Association>
+        <Association Name="CondicaoTempo">
+          <End Role="Condicao" Type="Self.Condicao" Multiplicity="*" />
+          <End Role="EstadoTempo" Type="Self.EstadoTempo" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="restriphotoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Condicao" EntityType="Self.Condicao" />
+          <EntitySet Name="EstadoLua" EntityType="Self.EstadoLua" />
+          <EntitySet Name="EstadoMares" EntityType="Self.EstadoMares" />
+          <EntitySet Name="EstadoTempo" EntityType="Self.EstadoTempo" />
+          <EntitySet Name="Porto" EntityType="Self.Porto" />
+          <EntitySet Name="Requisito" EntityType="Self.Requisito" />
+          <EntitySet Name="Utilizador" EntityType="Self.Utilizador" />
+          <AssociationSet Name="FK_Requisito_Condicao" Association="Self.FK_Requisito_Condicao">
+            <End Role="Requisito" EntitySet="Requisito" />
+            <End Role="Condicao" EntitySet="Condicao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Porto_Requisitos" Association="Self.FK_Porto_Requisitos">
+            <End Role="Porto" EntitySet="Porto" />
+            <End Role="Requisito" EntitySet="Requisito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilizador_Requisitos" Association="Self.FK_Utilizador_Requisitos">
+            <End Role="Utilizador" EntitySet="Utilizador" />
+            <End Role="Requisito" EntitySet="Requisito" />
+          </AssociationSet>
+          <AssociationSet Name="CondicaoLua" Association="Self.CondicaoLua">
+            <End Role="Condicao" EntitySet="Condicao" />
+            <End Role="EstadoLua" EntitySet="EstadoLua" />
+          </AssociationSet>
+          <AssociationSet Name="CondicaoMares" Association="Self.CondicaoMares">
+            <End Role="Condicao" EntitySet="Condicao" />
+            <End Role="EstadoMares" EntitySet="EstadoMares" />
+          </AssociationSet>
+          <AssociationSet Name="CondicaoTempo" Association="Self.CondicaoTempo">
+            <End Role="Condicao" EntitySet="Condicao" />
+            <End Role="EstadoTempo" EntitySet="EstadoTempo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="restriphotoModelStoreContainer" CdmEntityContainer="restriphotoEntities">
+          <EntitySetMapping Name="Condicao">
+            <EntityTypeMapping TypeName="restriphotoModel.Condicao">
+              <MappingFragment StoreEntitySet="Condicao">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="segundaStatus" ColumnName="segundaStatus" />
+                <ScalarProperty Name="tercaStatus" ColumnName="tercaStatus" />
+                <ScalarProperty Name="quartaStatus" ColumnName="quartaStatus" />
+                <ScalarProperty Name="quintaStatus" ColumnName="quintaStatus" />
+                <ScalarProperty Name="sextaStatus" ColumnName="sextaStatus" />
+                <ScalarProperty Name="sabadoStatus" ColumnName="sabadoStatus" />
+                <ScalarProperty Name="domingoStatus" ColumnName="domingoStatus" />
+                <ScalarProperty Name="idRequisito" ColumnName="idRequisito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoLua">
+            <EntityTypeMapping TypeName="restriphotoModel.EstadoLua">
+              <MappingFragment StoreEntitySet="EstadoLua">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoMares">
+            <EntityTypeMapping TypeName="restriphotoModel.EstadoMares">
+              <MappingFragment StoreEntitySet="EstadoMares">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoTempo">
+            <EntityTypeMapping TypeName="restriphotoModel.EstadoTempo">
+              <MappingFragment StoreEntitySet="EstadoTempo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Porto">
+            <EntityTypeMapping TypeName="restriphotoModel.Porto">
+              <MappingFragment StoreEntitySet="Porto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requisito">
+            <EntityTypeMapping TypeName="restriphotoModel.Requisito">
+              <MappingFragment StoreEntitySet="Requisito">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="local" ColumnName="local" />
+                <ScalarProperty Name="localizacao" ColumnName="localizacao" />
+                <ScalarProperty Name="idUtilizador" ColumnName="idUtilizador" />
+                <ScalarProperty Name="idPorto" ColumnName="idPorto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilizador">
+            <EntityTypeMapping TypeName="restriphotoModel.Utilizador">
+              <MappingFragment StoreEntitySet="Utilizador">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CondicaoLua" TypeName="restriphotoModel.CondicaoLua" StoreEntitySet="CondicaoLua">
+            <EndProperty Name="Condicao">
+              <ScalarProperty Name="id" ColumnName="idCondicao" />
+            </EndProperty>
+            <EndProperty Name="EstadoLua">
+              <ScalarProperty Name="id" ColumnName="idLua" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CondicaoMares" TypeName="restriphotoModel.CondicaoMares" StoreEntitySet="CondicaoMares">
+            <EndProperty Name="Condicao">
+              <ScalarProperty Name="id" ColumnName="idCondicao" />
+            </EndProperty>
+            <EndProperty Name="EstadoMares">
+              <ScalarProperty Name="id" ColumnName="idMares" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CondicaoTempo" TypeName="restriphotoModel.CondicaoTempo" StoreEntitySet="CondicaoTempo">
+            <EndProperty Name="Condicao">
+              <ScalarProperty Name="id" ColumnName="idCondicao" />
+            </EndProperty>
+            <EndProperty Name="EstadoTempo">
+              <ScalarProperty Name="id" ColumnName="idTempo" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
