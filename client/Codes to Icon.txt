@@ -1,0 +1,16 @@
+ If Code = 29 Or Code = 30 Or Code = 44 Then
+	g.DrawImage(My.Resources.Sun_Cloud, 0, 9)
+ElseIf Code = 20 Or Code = 26 Or Code = 27 Or Code = 28 Then
+	g.DrawImage(My.Resources.Mostly_Cloudy, 0, 9)
+ElseIf Code = 31 Or Code = 32 Or Code = 33 Or Code = 34 Or Code = 36 Then
+	g.DrawImage(My.Resources.Sun, 0, 9)
+ElseIf Code = 5 Or Code = 6 Or Code = 10 Or Code = 35 Or Code = 40 Then
+	g.DrawImage(My.Resources.Rain, 0, 9)
+ElseIf Code = 3 Or Code = 4 Or Code = 37 Or Code = 38 Or Code = 39 Or Code = 45 Or Code = 47 Then
+	g.DrawImage(My.Resources.Thunder, 0, 9)
+ElseIf Code = 7 Or Code = 13 Or Code = 14 Or Code = 15 Or Code = 16 Or Code = 17 Or Code = 18 Or Code = 41 Or Code = 42 Or Code = 43 Or Code = 44 Then
+	g.DrawImage(My.Resources.Snow, 0, 9)
+Else
+	g.DrawString(Code, sfont, Brushes.Black, 136, 31)
+	g.DrawImage(My.Resources._404, 0, 9)
+End If

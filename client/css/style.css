@@ -1,0 +1,361 @@
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+	min-width: 800px;
+	background: white;
+}
+
+.root{
+	height:100%;
+	width: 100%;
+	background: white;
+}
+
+.ng-scope{
+	position: absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    overflow:auto;
+}
+
+/* FONTS ------------------------------------------------------------------------------------------------ */
+
+@font-face
+{
+  font-family: PTSANS;
+  src: url(../fonts/PTN57F.ttf);
+}
+
+@font-face
+{
+  font-family: PTSANSBOLD;
+  src: url(../fonts/PTN77F.ttf);
+}
+
+/*--------------------------------------------------------------*/
+/* PARTIALS ----------------------------------------------------*/
+
+.login_partial
+{
+	height:100%;
+	width: 100%;
+	
+	background: url(../img/backgrounds/login_back2.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position:center center;
+	background-attachment: fixed;
+}
+
+.user_partial
+{
+	height:100%;
+	width: 100%;
+	
+	background: url(../img/backgrounds/user_back.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position:center center;
+	background-attachment: fixed;
+}
+
+/*------------------------------------------------------------------*/
+/*LOGIN PARTIAL ----------------------------------------------------*/
+
+.login_partial .login_form{
+	width: 400px;
+	height: 350px;
+	
+	margin: auto;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.login_form .login_logo{
+	display: block;
+	height: 100px;
+	width: 100px;
+	
+	background: url(../img/logo/logow.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position:center center;
+	
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+
+.login_form .login_title{
+	height: 30px;
+	display: block;
+	font-family: PTSANS;
+    font-size: 25px;
+	color:white;
+	line-height: 30px;
+	
+	text-align:center;
+	
+}
+
+.login_form .login_user{
+	width:400px;
+	height: 50px;
+	border-bottom: 1px solid white;
+}
+
+.login_form .login_user .login_user_name{
+	height: 50px;
+	display: inline-block;
+	font-family: PTSANS;
+    font-size: 18px;
+	color:white;
+	line-height: 50px;
+	vertical-align: top;
+	padding-right: 10px;
+	
+}
+
+.login_form .login_pass{
+	width:400px;
+	height: 50px;
+	border-bottom: 1px solid white;
+}
+
+.login_form .login_pass .login_pass_name{
+	height: 50px;
+	display: inline-block;
+	font-family: PTSANS;
+    font-size: 18px;
+	color:white;
+	line-height: 50px;
+	vertical-align: top;
+	padding-right: 10px;
+	
+}
+
+.login_form .login_textarea{
+	display: inline-block;
+	width: 300px;
+	height: 50px;
+	background-color: rgba(255,255,255,0.0);
+	border: none;
+	resize: none;
+	line-height: 50px;
+	vertical-align: top;
+	
+	font-family: PTSANS;
+    font-size: 18px;
+	color:white;
+	
+	margin-top: -1px;
+}
+
+.login_button{
+	display: block;
+	height: 30px;
+	width: 40px;
+	font-family: PTSANS;
+    font-size: 18px;
+	color:white;
+	line-height: 30px;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 25px;
+	border-bottom: 0px solid white;
+}
+
+.login_button:hover{
+	cursor:pointer;
+	border-bottom: 1px solid white;
+}
+
+/*------------------------------------------------------------------*/
+/*USER PARTIAL ----------------------------------------------------*/
+
+.user_partial .user_form{
+	width: 1000px;
+	margin:0 auto;
+}
+
+.user_partial .user_form .user_form_left{
+	display: inline-block;
+	width: 200px;
+	
+	margin-top: 25px;
+}
+
+.user_partial .user_form .user_form_right{
+	display: inline-block;
+	width: 750px;
+	
+	margin-top: 25px;
+	margin-left: 45px;
+	background-color: white;
+	vertical-align: top;
+}
+
+.user_partial .user_form .user_form_left .user_profile_photo{
+	display: block;
+	width: 200px;
+	height: 300px;
+	
+	background: url(https://m1.behance.net/rendition/modules/65013487/disp/7a312d3181a5a4b2334089e3cea1708a.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position:center center;
+	
+	/*border-top-left-radius: 5px;
+	border-top-right-radius: 5px;*/
+}
+
+.user_partial .user_form .user_form_left .user_profile_name{
+	display: block;
+	width: 200px;
+	height: 50px;
+	background-color: rgba(112,63,128,1.0);
+	
+	font-family: PTSANS;
+    font-size: 18px;
+	color:white;
+	line-height: 50px;
+	text-align: center;
+	text-transform: uppercase;
+	
+	margin-top: 3px;
+	
+	/*border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;*/
+}
+
+.user_partial .user_form .user_form_right .user_restrictions .user_restrictions_title{
+	display: block;
+	width: 740px;
+	padding-left:10px;
+	height: 50px;
+	background-color: rgba(112,63,128,1.0);
+	
+	font-family: PTSANS;
+    font-size: 18px;
+	color:white;
+	line-height: 50px;
+}
+
+.user_partial .user_form .user_form_right .user_restrictions .user_restrictions_container{
+	display: block;
+	width: 750px;
+	height: 200px;
+	background-color: white;
+}
+
+.user_restrictions_container .restriction{
+	display:block;
+	width: 100%;
+	height:75px;
+}
+
+.restriction .restriction_icon{
+	display: inline-block;
+	width: 100px;
+	height: 75px;
+	
+	background: url(../img/weather_icons/na.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position:center center;
+}
+
+.restriction .restriction_city{
+	display: block;
+	max-width: 100%;
+	height: 25px;
+	
+	color: rgba(50,50,50,1.0);
+	
+	font-family: PTSANS;
+    font-size: 18px;
+	line-height: 25px;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.restriction .restrictionViceCity:nth-child(odd){
+	display:block;
+	width: 100%;
+	background-color: rgba(230,230,230,1.0);
+}
+.restriction .restrictionViceCity:nth-child(even){
+	display:block;
+	width: 100%;
+	background-color: white;
+}
+
+.restriction .restrictionViceCity .restriction_location{
+	display: inline-block;
+	width: 325px;
+	height: 25px;
+	margin-left:20px;
+	
+	color: rgba(50,50,50,1.0);
+	
+	font-family: PTSANS;
+    font-size: 16px;
+	line-height: 25px;
+	vertical-align: top;
+	margin-top: 8px;
+}
+
+.restriction .restrictionViceCity .restriction_data{
+	display: inline-block;
+	width: 640px;
+	height: 75px;
+	vertical-align: top;
+}
+
+.weather_restriction{
+	display: inline-block;
+	width: 150px;
+	height: 25px;
+	margin-left:20px;
+	
+	color: rgba(50,50,50,1.0);
+	
+	font-family: PTSANS;
+    font-size: 16px;
+	line-height: 25px;
+	vertical-align: top;
+	margin-top: 8px;
+}
+
+.tides_restriction{
+	display: inline-block;
+	width: 150px;
+	height: 25px;
+	margin-left:20px;
+	
+	color: rgba(50,50,50,1.0);
+	
+	font-family: PTSANS;
+    font-size: 16px;
+	line-height: 25px;
+	vertical-align: top;
+	margin-top: 8px;
+}
+
+.moon_restriction{
+	display: inline-block;
+	width: 150px;
+	height: 25px;
+	margin-left:20px;
+	
+	color: rgba(50,50,50,1.0);
+	
+	font-family: PTSANS;
+    font-size: 16px;
+	line-height: 25px;
+	vertical-align: top;
+	margin-top: 8px;
+}
