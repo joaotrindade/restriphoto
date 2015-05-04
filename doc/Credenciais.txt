@@ -8,4 +8,14 @@ SQL Server
 User: developer
 Password: saavedr@963
 
-N!%kU9Zmn4 
+Jenkins
+http://joaotrindade.pt:8080 
+user: developer
+password: saavedra
+
+API Funciona na Porta: 8921
+DLL's na Pasta: C:\WWW\Restriphoto\API
+Codigo na Pasta (Auto-Deployed): C:\Program Files (x86)\Jenkins\jobs\Restriphoto\workspace\api_code
+
+Website Funciona na Porta: 80
+Codigo na Pasta (Auto-Deployed): C:\Program Files (x86)\Jenkins\jobs\Restriphoto\workspace\client
