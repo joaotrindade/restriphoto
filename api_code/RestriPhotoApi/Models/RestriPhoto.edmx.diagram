@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="505e65a4416345db9f4e008c0e28870b" Name="Diagram1">
+        <EntityTypeShape EntityType="restriphotoModel.Condicao" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="restriphotoModel.EstadoLua" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="restriphotoModel.EstadoMares" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="restriphotoModel.EstadoTempo" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="restriphotoModel.Porto" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="restriphotoModel.Requisito" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="restriphotoModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="restriphotoModel.Utilizador" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="restriphotoModel.FK_Requisito_Condicao" ManuallyRouted="true" >
+          <ConnectorPoint PointX="4.5" PointY="4.7785953776041659" />
+          <ConnectorPoint PointX="5.25" PointY="4.7785953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="restriphotoModel.FK_Porto_Requisitos" ManuallyRouted="false" />
+        <AssociationConnector Association="restriphotoModel.FK_Utilizador_Requisitos" ManuallyRouted="false" />
+        <AssociationConnector Association="restriphotoModel.CondicaoLua" ManuallyRouted="false" />
+        <AssociationConnector Association="restriphotoModel.CondicaoMares" ManuallyRouted="false" />
+        <AssociationConnector Association="restriphotoModel.CondicaoTempo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
