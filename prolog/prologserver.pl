@@ -79,18 +79,18 @@ evaluate_weather(WeatherConditionDesired,ActualWeather) :- WeatherConditionDesir
 /* Evaluate Recebe: Local, Porto, Hora de Inicio, Hora de Fim, Lista de Dias[Dia-Boleano], se quer por-do-sol, se quer nascer-do-sol, valor das condicoes atm,valor das condicoes marés, lista temporaria de dias, resposta */	
 
 /* Evaluate final */
-evaluate(Local,Porto,Hinitial-Hfinal,[],Sunrise,Sunset,WeatherCondition,SeaCondition,TempList,TempList).
+evaluate(Local,Porto,Hinitial-Hfinal,[],Sunrise,Sunset,WeatherCondition,SeaCondition,TempList,TempList) :- !.
 
 /*Evaluate Positivo*/
 evaluate(Local,Porto,Hinitial-Hfinal,[H1-H2|T],Sunrise,Sunset,WeatherCondition,SeaCondition,TempList,Answer) :-
 	H2 == 1,
 	estado_tempo(Local,W_List), estado_mares(Porto, S_List), estado_astro(Local,A_List),
 	nth1(H1,W_List,W),nth1(H1,S_List,ST1-ST2),nth1(H1,A_List,AT1-AT2),
-	evaluate_weather(WeatherCondition,W),evaluate_mares(Hinitial-Hfinal,SeaCondition,ST1-ST2),evaluate_astro(Hinitial-Hfinal,Sunrise,Sunset,AT1-AT2),
+	evaluate_weather(WeatherCondition,W),evaluate_mares(Hinitial-Hfinal,SeaCondition,ST1-ST2),evaluate_astro(Hinitial-Hfinal,Sunrise,Sunset,AT1-AT2),!,
 	evaluate(Local,Porto,Hinitial-Hfinal,T,Sunrise,Sunset,WeatherCondition,SeaCondition,[H1|TempList],Answer).
 	
 /*Evaluate negativo */
-evaluate(Local,Porto,Hinitial-Hfinal,[H1-H2|T],Sunrise,Sunset,WeatherCondition,SeaCondition,TempList,Answer) :-
+evaluate(Local,Porto,Hinitial-Hfinal,[H1-H2|T],Sunrise,Sunset,WeatherCondition,SeaCondition,TempList,Answer) :- !,
 	evaluate(Local,Porto,Hinitial-Hfinal,T,Sunrise,Sunset,WeatherCondition,SeaCondition,TempList,Answer).
 
 	
@@ -100,10 +100,10 @@ load_tests:-
 retractall(estado_tempo(_,_)),
 retractall(estado_mares(_,_)),
 retractall(estado_astro(_,_)),
-assert(estado_tempo("coimbra",[10,11,12,12,14,15])),
-assert(estado_tempo("porto",[10,11,12,13,14,15])),
-assert(estado_tempo("alentejo",[10,11,12,13,14,15])),
-assert(estado_tempo("lisboa",[10,11,12,13,14,15])),
+assert(estado_tempo("coimbra",[10,11,12,12,14])),
+assert(estado_tempo("porto",[10,11,12,13,14])),
+assert(estado_tempo("alentejo",[10,11,12,13,14])),
+assert(estado_tempo("lisboa",[10,11,12,13,14])),
 assert(estado_mares("leixoes",[7-18,7-18,7-18,7-22,7-18])),
 assert(estado_mares("figueira",[7-18,7-18,7-18,7-18,7-18])),
 assert(estado_astro("coimbra",[6-17,6-17,6-17,6-17,6-17])),

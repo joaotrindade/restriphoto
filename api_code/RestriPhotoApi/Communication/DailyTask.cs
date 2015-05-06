@@ -124,6 +124,30 @@ namespace RestriPhotoApi.Communication
             writeSocket("get_tempo(\"coimbra\").");
         }
 
+        public int[] queryPLOG(String local, String porto, int horaInicial, int horaFinal, int[] disponibilidade, int condicaoSunrise, int condicaoSunset, int condicaoAtmosferica, int condicaoMar)
+        {
+            String message = "request(\"";
+            message += local;
+            message += "\", \"";
+            message += porto;
+            message += "\",";
+            message += horaInicial + "," + horaFinal + ",";
+            for (int k = 0; k < 4; k++)
+            {
+                message += disponibilidade[k];
+                message += ",";
+            }
+            message += disponibilidade[4] + ",";
+            message += condicaoSunrise + "," + condicaoSunset + "," ;
+            message += condicaoAtmosferica + "," + condicaoMar;
+            message += ").";
+
+            writeSocket(message);
+            return parsePLOGArray(readSocket());
+
+
+        }
+
         public void writeSocket(String message)
         {
             outStream.WriteLine(message); outStream.Flush();
@@ -160,20 +184,55 @@ namespace RestriPhotoApi.Communication
 
         public void Execute()
         {
-            
+
+            //parsePLOGArray("[1,2,3,4,5]");
             
             /* TEST VALUES */
-            int[] estadoATM = new int[5] {1,2,3,4,5};
-            int[] estadoMares = new int[10] { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 };
-            int[] estadoAstro = new int[10] { 5, 5, 4, 4, 3, 3, 2, 2, 1, 1 };
 
+            int[] disponibilidade = new int[5] {1,1,1,1,1};
+            int[] estadoATM = new int[5] {10,11,12,12,14};
+            int[] estadoMares = new int[10] { 7, 18, 7, 18, 7, 18, 7, 18, 7, 18};
+            int[] estadoAstro = new int[10] { 6, 17, 6, 17, 6, 17, 6, 17, 6, 17};
+            int[] result;
             cleanData();
             sendWeather("coimbra",estadoATM);
             sendSea("leixoes",estadoMares);
             sendAstro("coimbra", estadoAstro);
-            /* TEST VALUES */
+
+            result = queryPLOG("coimbra", "leixoes", 17, 20, disponibilidade, 0, 1, 12, 0);
+
+            for (int i = 0; i < result.Length; i++)
+                file.Write(result[i] + " ");
+            file.Flush();
+            
+            //RESULT: 4,3
+
+           /* TEST VALUES */
 
 
+        }
+
+        public int[] parsePLOGArray (String message)
+        {
+            int[] result = new int[100];
+            int found = 0, temp;
+            String partial = "";
+            for (int i = 1; i < message.Length; i++ )
+            {
+                if (message[i] == ',' || message[i] == ']') 
+                {
+                    temp = Convert.ToInt32(partial);
+                    result[found] = temp;
+                    found++;
+                    partial = "";
+                }
+                else
+                {
+                    partial += message[i];
+                }
+            }
+            Array.Resize(ref result, found);
+            return result;
         }
 
     }
