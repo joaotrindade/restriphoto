@@ -40,15 +40,15 @@ parse_input(cpu_play(Tabuleiro,Player,NewPlayer,Jogada),Answer) :-
 
 parse_input(quit, ok-bye) :- !.
 
-parse_input(clean_data,'OK.') :-  retractall(estado_tempo(_,_)), retractall(estado_mares(_,_)), retractall(estado_astro(_,_)), write('todos os dados apagados').
+parse_input(clean_data,'OK') :-  retractall(estado_tempo(_,_)), retractall(estado_mares(_,_)), retractall(estado_astro(_,_)), write('todos os dados apagados').
 	
-parse_input(estado_tempo(Local,E1,E2,E3,E4,E5),'OK.') :-
+parse_input(estado_tempo(Local,E1,E2,E3,E4,E5),'OK') :-
 	write('atualizado estado_tempo: '),write(Local), nl, assert(estado_tempo(Local,[E1,E2,E3,E4,E5])).
 	
-parse_input(estado_mares(Porto,E1,E2,E3,E4,E5,E6,E7,E8,E9,E10),'OK.') :-
+parse_input(estado_mares(Porto,E1,E2,E3,E4,E5,E6,E7,E8,E9,E10),'OK') :-
 	write('atualizado estado_marés: '),write(Porto), nl, assert(estado_mares(Porto,[E1-E2,E3-E4,E5-E6,E7-E8,E9-E10])).
 
-parse_input(estado_astro(Local,H1,H2,H3,H4,H5,H6,H7,H8,H9,H10),'OK.') :-
+parse_input(estado_astro(Local,H1,H2,H3,H4,H5,H6,H7,H8,H9,H10),'OK') :-
 	write('atualizado estado_astro: '),write(Local), nl, assert(estado_astro(Local,[H1-H2,H3-H4,H5-H6,H7-H8,H9-H10])).
 	
 parse_input(request(Local,Porto,Hinitial,Hfinal,D1,D2,D3,D4,D5,Sunrise,Sunset,WeatherCondition,SeaCondition),Answer) :-
