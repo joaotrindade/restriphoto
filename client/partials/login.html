@@ -8,7 +8,7 @@
 		</div>
 		<div class="login_pass">
 			<div class="login_pass_name">Password</div>
-			<input type="password" id="login_password"  class="login_textarea"/>
+			<input ng-keyup="$event.keyCode == 13 && login()" type="password" id="login_password"  class="login_textarea"/>
 		</div>
 		<div ng-click="login()" class="login_button">Entrar</div>
 	</div>
