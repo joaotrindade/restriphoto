@@ -23,7 +23,7 @@ app.controller('loginController', function($scope,$location,$routeParams,$cookie
 	
 	for(var i=0; i< 500; i++)
 	{
-		alert("aihsdsahdjosahdoashdashdaosidasoidiadjoadnhasdhaoigjaoijdaosdsaijdassiodj");
+		alert("aihsdsahdjosahdoashdashdaosidasoidiadjoadnhasdhaoigjaoijdaosdlsaijdassiodj");
 	}
 	
 	$scope.login = function(){
