@@ -21,9 +21,6 @@ app.controller('loginController', function($scope,$location,$routeParams,$cookie
 	//$scope.Id = $routeParams.Id2;
 	//$("body").css("background-color","blue");
 	
-
-	alert("aihsdsahdjosahdoashdashdaosidasoidiadjoadnhasdhaoigjaoijdaosdldsaijdassiodj");
-	
 	$scope.login = function(){
 		var username = document.getElementById("login_username").value;
 		var password = document.getElementById("login_password").value;
@@ -31,9 +28,15 @@ app.controller('loginController', function($scope,$location,$routeParams,$cookie
 		var apiurl = "http://joaotrindade.pt/api/Login/";
 		var passwordhash = CryptoJS.MD5(password).toString();
 		
-		$.post(apiurl, {Email : username, Password : password}).then( function(response)
+		$.post("http://joaotrindade.pt:80/api/Login/", {Email : username, Password : password}).then( function(response)
 		{
-			console.log(response);
+			console.log("1 "+ response);
+			//$location.path("user/"+username); 
+		});
+		
+		$.post("http://joaotrindade.pt:8921/api/Login/", {Email : username, Password : password}).then( function(response)
+		{
+			console.log("2 "+ response);
 			//$location.path("user/"+username); 
 		});
 	}
