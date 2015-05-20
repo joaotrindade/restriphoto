@@ -25,16 +25,27 @@ app.controller('loginController', function($scope,$location,$routeParams,$cookie
 		var username = document.getElementById("login_username").value;
 		var password = document.getElementById("login_password").value;
 		
-		var apiurl = "https://joaotrindade.pt:8921/api/Login/";
+		var apiurl = "http://joaotrindade.pt:8921/api/Login/";
 		var passwordhash = CryptoJS.MD5(password).toString();
 		
 		console.log(password);
 		
+		$.ajax({
+		  url:apiurl,
+		  type:"POST",
+		  data: {Email : username, Password : password},
+		  contentType:"application/json",
+		  dataType:"json",
+		  success: function(response){
+		    console.log("Ajax -> " + response);
+		  }
+		})
+
 		$.post(apiurl, {Email : username, Password : password}).then( function(response)
 		{
-			console.log(response);
+			console.log("Post -> " + response);
 			$location.path("user/"+username); 
-		}); 
+		});
 	}
 });
 
