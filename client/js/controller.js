@@ -21,10 +21,8 @@ app.controller('loginController', function($scope,$location,$routeParams,$cookie
 	//$scope.Id = $routeParams.Id2;
 	//$("body").css("background-color","blue");
 	
-	for(var i=0; i< 500; i++)
-	{
-		alert("aihsdsahdjosahdoashdashdaosidasoidiadjoadnhasdhaoigjaoijdaosdlsaijdassiodj");
-	}
+
+	alert("aihsdsahdjosahdoashdashdaosidasoidiadjoadnhasdhaoigjaoijdaosdldsaijdassiodj");
 	
 	$scope.login = function(){
 		var username = document.getElementById("login_username").value;
