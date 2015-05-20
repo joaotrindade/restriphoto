@@ -21,13 +21,18 @@ app.controller('loginController', function($scope,$location,$routeParams,$cookie
 	//$scope.Id = $routeParams.Id2;
 	//$("body").css("background-color","blue");
 	
+	for(var i=0; i< 500; i++)
+	{
+		alert("aihsdsahdjosahdoashdashdaosidasoidiadjoadnhasdhaoigjaoijdaosdsaijdasiodj");
+	}
+	
 	$scope.login = function(){
 		var username = document.getElementById("login_username").value;
 		var password = document.getElementById("login_password").value;
 		
 		var apiurl = "http://joaotrindade.pt/api/Login/";
 		var passwordhash = CryptoJS.MD5(password).toString();
-
+		
 		$.post(apiurl, {Email : username, Password : password}).then( function(response)
 		{
 			console.log(response);
