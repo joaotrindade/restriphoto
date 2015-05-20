@@ -17,24 +17,29 @@ app.controller('rootController', function($scope)
 });
 
 app.controller('loginController', function($scope,$location,$timeout,$routeParams,$cookies)
-{
-	//$scope.Id = $routeParams.Id2;
-	//$("body").css("background-color","blue");
+{}
 	
 	$scope.login = function(){
 		var username = document.getElementById("login_username").value;
 		var password = document.getElementById("login_password").value;
 		
-		var apiurl = "http://joaotrindade.pt/api/Login/";
-		var passwordhash = CryptoJS.MD5(password).toString();
+		var apiurl = "http://joaotrindade.pt:80/api/Login/";
 		
-		$.post("http://joaotrindade.pt:80/api/Login/", {Email : username, Password : password}).then( function(response)
+		$.post(apiurl, {Email : username, Password : password}).then( function(response)
 		{
 			console.log(response);
 			
 			if(response.StatusCode != 666)
 			{
-				$location.path("user/"+ response.id); 
+				var now = new Date();
+				var exp = new Date(now.getFullYear()+1, now.getMonth(), now.getDate());
+				
+				$cookies.put("userid", response.Id, {expires: exp});
+				$cookies.put("useremail", response.Email, {expires: exp});
+				$cookies.put("userurl", response.Url, {expires: exp});
+			
+				$location.path("user/"+ response.id);
+			 
 				$timeout(function () { 
 					$scope.currentPath = $location.path();
 				},0)
@@ -57,12 +62,13 @@ app.controller('aboutController', function($scope,$routeParams,$window)
 
 app.controller('userController', function($scope,$routeParams,$cookies,$window)
 {
-	$scope.ID = $routeParams.ID;
-	$scope.UpURL = "https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xap1/v/t1.0-9/10169442_416816631805894_6827082371479926696_n.jpg?oh=654fd9d6c0acf4a0be65012bc86a5295&oe=55827CC7&__gda__=1434640923_05f4c6a8edb66579a7a8c96c9a48601e";
-	
+	$scope.ID = $cookies.get("userid"); //$routeParams.Id
+	$scope.UpURL = $cookies.get("userurl");
+
 	$scope.IconURL = "Sun.png";
 	
-	console.log($cookies.get("loginCookie"));
+	
+
 });
 
 app.controller('parametersController2', function($scope,$routeParams)
