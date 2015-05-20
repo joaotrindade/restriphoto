@@ -16,7 +16,7 @@ app.controller('rootController', function($scope)
 	
 });
 
-app.controller('loginController', function($scope,$location,$routeParams,$cookies)
+app.controller('loginController', function($scope,$location,$timeout,$routeParams,$cookies)
 {
 	//$scope.Id = $routeParams.Id2;
 	//$("body").css("background-color","blue");
@@ -30,15 +30,21 @@ app.controller('loginController', function($scope,$location,$routeParams,$cookie
 		
 		$.post("http://joaotrindade.pt:80/api/Login/", {Email : username, Password : password}).then( function(response)
 		{
-			console.log("1 "+ response);
-			//$location.path("user/"+username); 
+			console.log(response);
+			
+			if(response.StatusCode != 666)
+			{
+				$location.path("user/"+ response.id); 
+				$timeout(function () { 
+					$scope.currentPath = $location.path();
+				},0)
+			}
+			else
+			{
+				alert("User not in the database");
+			}
 		});
 		
-		$.post("http://joaotrindade.pt:8921/api/Login/", {Email : username, Password : password}).then( function(response)
-		{
-			console.log("2 "+ response);
-			//$location.path("user/"+username); 
-		});
 	}
 });
 
