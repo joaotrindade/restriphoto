@@ -35,10 +35,11 @@ app.controller('loginController', function($scope,$location,$timeout,$routeParam
 				var exp = new Date(now.getFullYear()+1, now.getMonth(), now.getDate());
 				
 				$cookies.put("userid", response.Id, {expires: exp});
+				$cookies.put("username", response.Name, {expires: exp});
 				$cookies.put("useremail", response.Email, {expires: exp});
 				$cookies.put("userurl", response.Url, {expires: exp});
 			
-				$location.path("user/"+ response.id);
+				$location.path("user/"+ response.Name);
 			 
 				$timeout(function () { 
 					$scope.currentPath = $location.path();
@@ -63,6 +64,7 @@ app.controller('aboutController', function($scope,$routeParams,$window)
 app.controller('userController', function($scope,$routeParams,$cookies,$window)
 {
 	$scope.ID = $cookies.get("userid"); //$routeParams.Id
+	$scope.Name = $cookies.get("username"); //$routeParams.Id
 	$scope.UpURL = $cookies.get("userurl");
 
 	$scope.IconURL = "Sun.png";
