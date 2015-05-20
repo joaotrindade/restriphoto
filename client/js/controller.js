@@ -17,7 +17,7 @@ app.controller('rootController', function($scope)
 });
 
 app.controller('loginController', function($scope,$location,$timeout,$routeParams,$cookies)
-{}
+{
 	
 	$scope.login = function(){
 		var username = document.getElementById("login_username").value;
