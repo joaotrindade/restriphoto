@@ -69,14 +69,157 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 
 	$scope.IconURL = "Sun.png";
 	
+	$scope.getLocality = function codeAddress() {
+	 	var address = document.getElementById('address').value;
+	  	geocoder.geocode( { 'address': address}, function(results, status) {
+		    if (status == google.maps.GeocoderStatus.OK) {
+				if(globalMarker != null)
+					globalMarker.setMap(null);
+					
+		      	map.setCenter(results[0].geometry.location);
 	
-
+		      	var marker = new google.maps.Marker({
+		          	map: map,
+		          	position: results[0].geometry.location
+		      	});
+				globalMarker = marker;
+				globalMarker.setMap(map);
+				map.setCenter(results[0].geometry.location);
+				
+				globalLocality = "";
+				globalDistrict = "";
+				
+				//Funciona apenas com Portugal para já
+				for(var i=0; i< results[0].address_components.length ; i++)
+				{
+					if(results[0].address_components[i].types[0] == "locality")
+					{
+						globalLocality = results[0].address_components[i].long_name;
+						//alert("Localidade = " + $scope.addLocalidade );
+					}
+					
+					if(results[0].address_components[i].types[0] == "administrative_area_level_1")
+					{
+						 globalDistrict = results[0].address_components[i].long_name;
+						//alert("Distrito = " + $scope.addDistrito );
+					}
+				}
+				
+				$scope.addLocalidade = globalLocality;
+				$scope.addDistrito = globalDistrict;
+				
+				if(globalLocality != "")
+					document.getElementById('address').value = globalLocality + " , " + globalDistrict;
+				else
+					document.getElementById('address').value = globalDistrict;
+		    } 
+			else 
+			{
+		      alert('Geocode was not successful for the following reason: ' + status);
+		    }
+	  	});
+	}
+	
+	$scope.changeLocation = function changeL(){
+		$scope.addLocalidade = globalLocality;
+		$scope.addDistrito = globalDistrict;
+	}
 });
 
 app.controller('parametersController2', function($scope,$routeParams)
 {
 	$scope.Id = $routeParams.Id2;
 });
+
+/* GOOGLE GEOCODING API */
+
+var geocoder;
+var map;
+var globalMarker = null;
+var globalLocality = "";
+var globalDistrict = "";
+
+function initialize() {
+	geocoder = new google.maps.Geocoder();
+  	var latlng = new google.maps.LatLng(41.178522, -8.599528);
+  	var mapOptions = {
+    	zoom: 10,
+    	center: latlng
+  	}
+  	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	  
+	google.maps.event.addListener(map, 'click', function(e) {
+		if(globalMarker != null)
+			globalMarker.setMap(null);
+			
+		var position = e.latLng;
+		var marker = new google.maps.Marker({
+		   position: position,
+		   map: map
+		});
+		globalMarker = marker;
+		globalMarker.setMap(map);
+		map.setCenter(position);
+		
+		var geoApi = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.A + "," + position.F;
+		console.log(position.A + " " + position.F);
+		$.get(geoApi).then( function(response){
+			var results = response.results;
+			console.log(results);
+			
+			globalLocality = "";
+			globalDistrict = "";
+			
+			//Funciona apenas com Portugal para já
+			for(var i=0; i< results[0].address_components.length ; i++)
+			{
+				if(results[0].address_components[i].types[0] == "locality")
+				{
+					globalLocality = results[0].address_components[i].long_name;
+					//alert("Localidade = " + globalLocality );
+				}
+				 
+				if(results[0].address_components[i].types[0] == "administrative_area_level_1")
+				{
+					globalDistrict = results[0].address_components[i].long_name;
+					//alert("Distrito = " + globalDistrict );
+				}
+			}
+			
+			if(globalLocality != "")
+				document.getElementById('address').value = globalLocality + " , " + globalDistrict;
+			else
+				document.getElementById('address').value = globalDistrict;
+			
+			angular.element(document.getElementById('userPartial')).scope().changeLocation();
+			angular.element(document.getElementById('userPartial')).scope().$apply();
+			
+		});
+		/*map.panTo(position);*/
+	});
+}
+
+function codeAddress() {
+ 	var address = document.getElementById('address').value;
+  	geocoder.geocode( { 'address': address}, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
+	      	map.setCenter(results[0].geometry.location);
+	      	var marker = new google.maps.Marker({
+	          	map: map,
+	          	position: results[0].geometry.locations
+	      	});
+	    } 
+		else 
+		{
+	      alert('Geocode was not successful for the following reason: ' + status);
+	    }
+  	});
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+/*--------------------------------*/
+	
 
 
 

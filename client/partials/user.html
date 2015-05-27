@@ -1,4 +1,4 @@
-<div class="user_partial">
+<div class="user_partial" id="userPartial" ng-controller="userController">
 	<div class="user_form">
 		<div class="user_form_left">
 			<div class="user_profile_photo" style="background-image: url({{UpURL}})"></div>
@@ -6,6 +6,7 @@
 		</div>
 		
 		<div class="user_form_right">
+			
 			<div class="user_restrictions">
 				<div class="user_restrictions_title">As minhas restrições</div>
 				<div class="user_restrictions_container">
@@ -39,6 +40,22 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="user_restrictions">
+				<div class="user_restrictions_title">Adicionar Restrição</div>
+				<div class="user_restrictions_container">
+						
+					<div class="inputAddLocation">
+						<span class="worldicon"></span>
+						<div id="panel">
+	  						<input id="address" class="address_textarea" type="textbox" value="Porto, Portugal"></input>
+	  						<input type="button" value="Geocode" ng-click="getLocality()"></input>
+						</div>
+						<div id="map-canvas" style="height:400px"></div>
+					</div>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 </div>
