@@ -140,6 +140,7 @@ var globalLocality = "";
 var globalDistrict = "";
 
 function initialize() {
+	alert("GOOGLE INITIALIZE");
 	geocoder = new google.maps.Geocoder();
   	var latlng = new google.maps.LatLng(41.178522, -8.599528);
   	var mapOptions = {
