@@ -66,6 +66,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	$scope.ID = $cookies.get("userid"); //$routeParams.Id
 	$scope.Name = $cookies.get("username"); //$routeParams.Id
 	$scope.UpURL = $cookies.get("userurl");
+	
+	initialize();
 
 	$scope.IconURL = "Sun.png";
 	
@@ -140,7 +142,6 @@ var globalLocality = "";
 var globalDistrict = "";
 
 function initialize() {
-	alert("GOOGLE INITIALIZE");
 	geocoder = new google.maps.Geocoder();
   	var latlng = new google.maps.LatLng(41.178522, -8.599528);
   	var mapOptions = {
