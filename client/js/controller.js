@@ -284,8 +284,11 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		if(n!=0)
 		{
 			estadoT = estadoT.substring(estadoT, estadoT.length - 1);
+			estadoT+="]";
 		}
-		estadoT+="]";
+		else
+			estadoT = "null";
+		
 		
 		var estadoM = "";
 		if(selectedTide == 2)
@@ -303,7 +306,6 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				'"sabadoStatus":' + selectedDays2[6] + ',' +
 				'"domingoStatus":' + selectedDays2[7] + ',' +
 				'"idRequisito": 1,' +
-				'"estado": 0,' +
 				'"horaInicio":' + horaInit + ',' +
 				'"horaFim":' + horaFinit+ ',' +
 				'"sunset":' + selectedSunPosition2[1] + ',' +
