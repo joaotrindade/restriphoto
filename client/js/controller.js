@@ -274,7 +274,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		{
 			if(selectedWeather[i])
 			{
-				estadoT += '"' + estadoTids[i-1] + '",';
+				estadoT += estadoTids[i-1] + ',';
 				n++;
 			}
 		}
@@ -284,11 +284,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		}
 		estadoT+="]";
 		
-		var estadoM ="";
-		if(selectedTide == 2)
-			estadoM="null";
-		else
-			estadoM='["' + selectedTide + '"]';
+		var estadoM ='[' + selectedTide + ']';
 			
 		var j = '{ "segundaStatus":' + selectedDays2[1] + ',' +
 				'"tercaStatus":' + selectedDays2[2] + ',' +
