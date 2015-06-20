@@ -316,7 +316,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		$.post(apiurl, {bananas:obj}).then( function(response)
 		{
 			console.log(response);
-		}
+		});
 	}
 });
 
