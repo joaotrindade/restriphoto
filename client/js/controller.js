@@ -286,7 +286,9 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		estadoT+="]";
 		
 		var estadoM ='[{"id":' + selectedTide + ',"nome":"Tides"}]';
-			
+		
+		var horaInit = parseInt(document.getElementById('initTime').value.substring(document.getElementById('initTime').value, 2));
+		var horaFinit = parseInt(document.getElementById('endTime').value.substring(document.getElementById('endTime').value, 2));
 		var j = '{ "segundaStatus":' + selectedDays2[1] + ',' +
 				'"tercaStatus":' + selectedDays2[2] + ',' +
 				'"quartaStatus":' + selectedDays2[3] + ',' +
@@ -296,8 +298,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				'"domingoStatus":' + selectedDays2[7] + ',' +
 				'"idRequisito": 1,' +
 				'"estado": 0,' +
-				'"horaInicio":"' + document.getElementById('initTime').value + '",' +
-				'"horaFim":"' + document.getElementById('endTime').value + '",' +
+				'"horaInicio":' + horaInit + ',' +
+				'"horaFim":' + horaFinit+ ',' +
 				'"sunset":' + selectedSunPosition2[1] + ',' +
 				'"sunrise":' + selectedSunPosition2[2] + ',' +
 				'"EstadoTempo":' + estadoT + ',' +
@@ -310,8 +312,9 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		console.log(obj);
 		
 		var apiurl = "http://joaotrindade.pt:80/api/AdicionaCondicao/";
-		
-		$.post(apiurl, {bananas:obj}).then( function(response)
+	
+
+		$.post(apiurl, {condicoes:obj}).then( function(response)
 		{
 			console.log(response);
 		});
