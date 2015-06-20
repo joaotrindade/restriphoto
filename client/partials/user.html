@@ -44,7 +44,7 @@
 			<div class="user_restrictions">
 				<div class="user_restrictions_title">Adicionar Restrição</div>
 				<div class="user_restrictions_container">
-						
+					<div class="restriction_title" style="margin-bottom:10px;">Escolha Localização</div>
 					<div class="inputAddLocation">
 						<span class="worldicon"></span>
 						<div id="panel">
@@ -53,9 +53,142 @@
 						</div>
 						<div id="map-canvas" style="height:400px"></div>
 					</div>
+					
+					<div class="restriction_title" style="margin-top:20px">Espaço Horário Preferencial</div>
+					<div class="selectTime">
+						<div class="select_Hour">
+							<div class="select_Hour_title">Hora Início</div>
+							<input id='initTime' type='text' name='timepicker' class="inputHoras"/>
+						</div>
+						
+						<div class="select_Hour">
+							<div class="select_Hour_title">Hora Fim</div>
+							<input id='endTime' type='text' name='timepicker' class="inputHoras"/>
+						</div>
+					</div>
+					
+					<div class="restriction_title" style="margin-top:30px">Dias da Semana</div>
+					<div class="selectDays">
+						<div ng-if="sDays[1]" class="select_day" ng-click="activeDays(1)" style="position:static;">Seg</div>
+						<div ng-if="!sDays[1]" class="select_day" ng-click="activeDays(1)" style="color: rgb(200,200,200); position:static;">Seg</div>
+						
+						<div ng-if="sDays[2]" class="select_day" ng-click="activeDays(2)" style="position:static;">Ter</div>
+						<div ng-if="!sDays[2]" class="select_day" ng-click="activeDays(2)" style="color: rgb(200,200,200); position:static;">Ter</div>
+						
+						<div ng-if="sDays[3]" class="select_day" ng-click="activeDays(3)" style="position:static;">Qua</div>
+						<div ng-if="!sDays[3]" class="select_day" ng-click="activeDays(3)" style="color: rgb(200,200,200); position:static;">Qua</div>
+						
+						<div ng-if="sDays[4]" class="select_day" ng-click="activeDays(4)" style="position:static;">Qui</div>
+						<div ng-if="!sDays[4]" class="select_day" ng-click="activeDays(4)" style="color: rgb(200,200,200); position:static;">Qui</div>
+						
+						<div ng-if="sDays[5]" class="select_day" ng-click="activeDays(5)" style="position:static;">Sex</div>
+						<div ng-if="!sDays[5]" class="select_day" ng-click="activeDays(5)" style="color: rgb(200,200,200); position:static;">Sex</div>
+						
+						<div ng-if="sDays[6]" class="select_day" ng-click="activeDays(6)" style="position:static;">Sab</div>
+						<div ng-if="!sDays[6]" class="select_day" ng-click="activeDays(6)" style="color: rgb(200,200,200); position:static;">Sab</div>
+						
+						<div ng-if="sDays[7]" class="select_day" ng-click="activeDays(7)" style="position:static;">Dom</div>
+						<div ng-if="!sDays[7]" class="select_day" ng-click="activeDays(7)" style="color: rgb(200,200,200); position:static;">Dom</div>
+					</div>
+					
+					<div class="restriction_title" style="margin-top:30px">Estados do Tempo</div>
+					<div class="selectWeather">
+						<div class="selectWeatherTopRow">
+							<div class="selectObject">
+								<div ng-if="sWeather[1]" class="select_sun" ng-click="active(1)" style="position:relative;"></div>
+								<div ng-if="!sWeather[1]" class="select_sun" ng-click="active(1)" style="background-image: url(img/weather_icons/Sun2.png); position:relative;"></div>
+								<div class="select_title">Sol</div>
+							</div>
+							
+							<div class="selectObject">
+								<div ng-if="sWeather[2]" class="select_sunCloud" ng-click="active(2)" style="position:relative;"></div>
+								<div ng-if="!sWeather[2]" class="select_sunCloud" ng-click="active(2)" style="background-image: url(img/weather_icons/Sun_Cloud2.png); position:relative;"></div>
+								<div class="select_title">Pouco Nublado</div>
+							</div>
+							
+							<div class="selectObject">
+								<div ng-if="sWeather[3]" class="select_mostlycloudy" ng-click="active(3)" style="position:relative;"></div>
+								<div ng-if="!sWeather[3]" class="select_mostlycloudy" ng-click="active(3)" style="background-image: url(img/weather_icons/Mostly_Cloudy2.png); position:relative;"></div>
+								<div class="select_title">Muito Nublado</div>
+							</div>
+							
+							<div class="selectObject">
+								<div ng-if="sWeather[4]" class="select_downpour" ng-click="active(4)" style="position:relative;"></div>
+								<div ng-if="!sWeather[4]" class="select_downpour" ng-click="active(4)" style="background-image: url(img/weather_icons/DownPour2.png); position:relative;"></div>
+								<div class="select_title">Aguaceiros</div>
+							</div>
+							
+							<div class="selectObject">
+								<div ng-if="sWeather[5]" class="select_rain" ng-click="active(5)" style="position:relative;"></div>
+								<div ng-if="!sWeather[5]" class="select_rain" ng-click="active(5)" style="background-image: url(img/weather_icons/Rain2.png); position:relative;"></div>
+								<div class="select_title">Chuva</div>
+							</div>
+						</div>
+						<div class="selectWeatherBottomRow">
+							<div class="selectObject">
+								<div ng-if="sWeather[6]" class="select_fog" ng-click="active(6)" style="position:relative;"></div>
+								<div ng-if="!sWeather[6]" class="select_fog" ng-click="active(6)" style="background-image: url(img/weather_icons/Fog2.png); position:relative;"></div>
+								<div class="select_title">Nevoeiro</div>
+							</div>
+							
+							<div class="selectObject">
+								<div ng-if="sWeather[7]" class="select_thunder" ng-click="active(7)" style="position:relative;"></div>
+								<div ng-if="!sWeather[7]" class="select_thunder" ng-click="active(7)" style="background-image: url(img/weather_icons/Thunder2.png); position:relative;"></div>
+								<div class="select_title">Trovoada</div>
+							</div>
+							
+							<div class="selectObject">
+								<div ng-if="sWeather[8]" class="select_snow" ng-click="active(8)" style="position:relative;"></div>
+								<div ng-if="!sWeather[8]" class="select_snow" ng-click="active(8)" style="background-image: url(img/weather_icons/Snow2.png); position:relative;"></div>
+								<div class="select_title">Neve</div>
+							</div>
+							
+							<div class="selectObject">
+								<div ng-if="sWeather[9]" class="select_hail" ng-click="active(9)" style="position:relative;"></div>
+								<div ng-if="!sWeather[9]" class="select_hail" ng-click="active(9)" style="background-image: url(img/weather_icons/Hail2.png); position:relative;"></div>
+								<div class="select_title">Granizo</div>
+							</div>
+							
+							<div class="selectObject">
+								<div ng-if="sWeather[10]" class="select_wind" ng-click="active(10)" style="position:relative;"></div>
+								<div ng-if="!sWeather[10]" class="select_wind" ng-click="active(10)" style="background-image: url(img/weather_icons/Wind2.png); position:relative;"></div>
+								<div class="select_title">Ventoso</div>
+							</div>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 			
 		</div>
 	</div>
 </div>
+
+<!-- TimePicki Script -->
+
+
+<script type='text/javascript'>
+	$('#initTime').timepicki({
+		show_meridian:false,
+		min_hour_value:0,
+		max_hour_value:23,
+		step_size_minutes:15,
+		overflow_minutes:true,
+		start_time: ["00","00"],
+		increase_direction:'up',
+		disable_keyboard_mobile: true});
+	
+	$('#endTime').timepicki({
+		show_meridian:false,
+		min_hour_value:0,
+		max_hour_value:23,
+		step_size_minutes:15,
+		overflow_minutes:true,
+		start_time: ["00","00"],
+		increase_direction:'up',
+		disable_keyboard_mobile: true});
+
+</script>
+
+<!-- ------------------------------- -->
+

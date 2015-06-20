@@ -63,9 +63,34 @@ app.controller('aboutController', function($scope,$routeParams,$window)
 
 app.controller('userController', function($scope,$routeParams,$cookies,$window)
 {
+	var selectedWeather = []; 
+	var selectedDays= []; 
+	
+	function resetSelectedW(){
+		var array = [];
+		for(var i = 1; i<11; i++)
+		{
+			array[i] = false;
+		}
+		return array;
+	}
+	selectedWeather = resetSelectedW();
+	
+	function resetSelectedD(){
+		var array = [];
+		for(var i = 1; i<8; i++)
+		{
+			array[i] = false;
+		}
+		return array;
+	}
+	selectedDays = resetSelectedD();
+	
 	$scope.ID = $cookies.get("userid"); //$routeParams.Id
 	$scope.Name = $cookies.get("username"); //$routeParams.Id
 	$scope.UpURL = $cookies.get("userurl");
+	$scope.sWeather = selectedWeather;
+	$scope.sDays = selectedDays;
 	
 	initialize();
 
@@ -125,6 +150,32 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	$scope.changeLocation = function changeL(){
 		$scope.addLocalidade = globalLocality;
 		$scope.addDistrito = globalDistrict;
+	}
+	
+	$scope.active = function selectWeather(id){
+		
+		if(selectedWeather[id])
+		{	
+			selectedWeather[id] = false;
+		}
+		else
+		{
+			selectedWeather[id] = true;
+		}
+		
+	}
+	
+	$scope.activeDays = function selectDays(id){
+		
+		if(selectedDays[id])
+		{	
+			selectedDays[id] = false;
+		}
+		else
+		{
+			selectedDays[id] = true;
+		}
+		
 	}
 });
 
@@ -222,6 +273,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 /*--------------------------------*/
 	
+/*CLOCK PICKER ---------------------*/
+
+
 
 
 

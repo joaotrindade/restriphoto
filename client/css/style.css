@@ -368,6 +368,20 @@ body {
 
 /*ADD REST */
 
+.restriction_title{
+	display: block;
+	max-width: 100%;
+	height: 25px;
+	
+	color: rgba(50,50,50,1.0);
+	
+	font-family: PTSANS;
+    font-size: 18px;
+	line-height: 25px;
+	text-align: center;
+	margin-top: 10px;
+}
+
 .inputAddLocation{
 	
 }
@@ -379,4 +393,236 @@ body {
 }
 .address_textarea{
 	width: 85%;
+}
+
+.selectWeather{
+	width:100%;
+	margin-top:20px;
+}
+
+.selectWeatherTopRow{
+	/*margin-left:40px;*/
+	margin-bottom: 30px;
+}
+
+.selectObject{
+	display:inline-block;
+	margin-left:20px;
+	text-align:center;
+}
+
+.select_title{
+	color: rgba(50,50,50,1.0);
+	
+	font-family: PTSANS;
+    font-size: 16px;
+	line-height: 25px;
+	vertical-align: top;
+	margin-left:18px;
+}
+
+.selectWeatherTopRow .select_sun{
+	width: 100px;
+	height: 70px;
+	
+	background-image: url(../img/weather_icons/Sun.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.selectWeatherTopRow .select_sunCloud{
+	display:inline-block;
+	width: 100px;
+	height: 70px;
+	margin-left:20px;
+	
+	background-image: url(../img/weather_icons/Sun_Cloud.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.selectWeatherTopRow .select_downpour{
+	display:inline-block;
+	width: 100px;
+	height: 70px;
+	margin-left:20px;
+	
+	background-image: url(../img/weather_icons/DownPour.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.selectWeatherTopRow .select_mostlycloudy{
+	display:inline-block;
+	width: 100px;
+	height: 70px;
+	margin-left:20px;
+	
+	background-image: url(../img/weather_icons/Mostly_Cloudy.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.selectWeatherTopRow .select_rain{
+	display:inline-block;
+	width: 100px;
+	height: 70px;
+	margin-left:20px;
+	
+	background-image: url(../img/weather_icons/Rain.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.selectWeatherBottomRow .select_fog{
+	display:inline-block;
+	width: 100px;
+	height: 70px;
+	margin-left:20px;
+	
+	background-image: url(../img/weather_icons/Fog.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.selectWeatherBottomRow .select_thunder{
+	display:inline-block;
+	width: 100px;
+	height: 70px;
+	margin-left:20px;
+	
+	background-image: url(../img/weather_icons/Thunder.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.selectWeatherBottomRow .select_snow{
+	display:inline-block;
+	width: 100px;
+	height: 70px;
+	margin-left:20px;
+	
+	background-image: url(../img/weather_icons/Snow.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.selectWeatherBottomRow .select_hail{
+	display:inline-block;
+	width: 100px;
+	height: 70px;
+	margin-left:20px;
+	
+	background-image: url(../img/weather_icons/Hail.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.selectWeatherBottomRow .select_wind{
+	display:inline-block;
+	width: 100px;
+	height: 70px;
+	margin-left:20px;
+	
+	background-image: url(../img/weather_icons/Wind.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.select_wind:hover, .select_fog:hover, .select_sun:hover, .select_sunCloud:hover, .select_downpour:hover, .select_mostlycloudy:hover, .select_rain:hover, .select_thunder:hover, .select_snow:hover, .select_hail:hover{
+	cursor:pointer;
+}
+
+.selectDays{
+	margin-left: 185px;
+	margin-top: 20px;
+}
+
+.select_day{
+	display: inline-block;
+	color: rgba(112,63,128,1.0);
+	
+	font-family: PTSANS;
+    font-size: 25px;
+	line-height: 30px;
+	vertical-align: top;
+	margin-right: 20px;
+	
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	
+	cursor:pointer;
+}
+
+.select_day:hover{
+	cursor:pointer;
+}
+
+.selectTime{
+	width:400px;
+	margin: 0 auto;
+	padding-left: 40px;
+	
+}
+
+.select_Hour{
+	display:inline-block;
+	margin-right: 20px;
+}
+
+.select_Hour_title{
+	display:inline-block;
+	width: 162px;
+	color: rgba(50,50,50,1.0);
+	
+	font-family: PTSANS;
+    font-size: 18px;
+	line-height: 25px;
+	margin-top: 10px;
+	
+	
+	text-align: center;
+}
+
+.inputHoras{
+	width: 160px;
+	text-align: center;
+}
+
+.timepicker_wrap{
+	width: 160px !important;
 }
