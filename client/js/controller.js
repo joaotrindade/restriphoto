@@ -114,7 +114,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	$.post(apiurl, {idUtilizador : userid}).then( function(response)
 	{
 		console.log(response);
-	}
+	});
 	
 	$scope.IconURL = "Sun.png";
 	
