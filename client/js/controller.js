@@ -111,7 +111,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	
 	var apiRequisito = "http://joaotrindade.pt:80/api/Requisito/";
 	var userid = $cookies.get("userid");
-	$.post(apiurl, {idUtilizador : userid}).then( function(response)
+	$.post(apiRequisito , {idUtilizador : userid}).then( function(response)
 	{
 		console.log(response);
 	});
