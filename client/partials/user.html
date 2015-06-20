@@ -67,6 +67,22 @@
 						</div>
 					</div>
 					
+					<div class="restriction_title" style="margin-top:30px">Periodo de Tempo</div>
+					<div class="select_sunposition">
+						<div class="selectObject">
+							<div ng-if="sSunPosition[1]" class="select_sunrise" ng-click="activeSunPosition(1)" style="position:relative;"></div>
+							<div ng-if="!sSunPosition[1]" class="select_sunrise" ng-click="activeSunPosition(1)" style="background-image: url(img/weather_icons/sunrise2.png); position:relative;"></div>
+							<div class="select_title" style="margin-left:0px">Nascer Sol</div>
+						</div>
+						
+						<div class="selectObject">
+							<div ng-if="sSunPosition[2]" class="select_sunset" ng-click="activeSunPosition(2)" style="position:relative;"></div>
+							<div ng-if="!sSunPosition[2]" class="select_sunset" ng-click="activeSunPosition(2)" style="background-image: url(img/weather_icons/sunset2.png); position:relative;"></div>
+							<div class="select_title" style="margin-left:0px">Pôr Sol</div>
+						</div>
+					</div>
+					
+					
 					<div class="restriction_title" style="margin-top:30px">Dias da Semana</div>
 					<div class="selectDays">
 						<div ng-if="sDays[1]" class="select_day" ng-click="activeDays(1)" style="position:static;">Seg</div>
@@ -156,6 +172,24 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="restriction_title" style="margin-top:30px">Estado Maré</div>
+					<div class="select_sunposition">
+						<div class="selectObject">
+							<div ng-if="selectedTide==0" class="select_lowtide" ng-click="activeTide(0)" style="position:relative;"></div>
+							<div ng-if="selectedTide!=0" class="select_lowtide" ng-click="activeTide(0)" style="background-image: url(img/weather_icons/lowtides2.png); position:relative;"></div>
+							<div class="select_title" style="margin-left:0px">Maré Baixa</div>
+						</div>
+						
+						<div class="selectObject">
+							<div ng-if="selectedTide==1" class="select_hightide" ng-click="activeTide(1)" style="position:relative;"></div>
+							<div ng-if="selectedTide!=1" class="select_hightide" ng-click="activeTide(1)" style="background-image: url(img/weather_icons/hightides2.png); position:relative;"></div>
+							<div class="select_title" style="margin-left:0px">Maré Alta</div>
+						</div>
+					</div>
+					
+					
+					<div class="adicionarButton" ng-click="addRestriction()">Adicionar</div>
 					
 				</div>
 			</div>

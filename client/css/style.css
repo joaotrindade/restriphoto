@@ -626,3 +626,81 @@ body {
 .timepicker_wrap{
 	width: 160px !important;
 }
+
+.select_sunposition{
+	margin-left:240px;
+	margin-top: 20px;
+}
+
+.select_sunrise{
+	width: 100px;
+	height: 70px;
+	
+	background-image: url(../img/weather_icons/sunrise.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.select_sunset{
+	width: 100px;
+	height: 70px;
+	
+	background-image: url(../img/weather_icons/sunset.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.select_lowtide{
+	width: 100px;
+	height: 70px;
+	
+	background-image: url(../img/weather_icons/lowtides.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.select_hightide{
+	width: 100px;
+	height: 70px;
+	
+	background-image: url(../img/weather_icons/hightides.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	cursor:pointer;
+}	
+
+.adicionarButton{
+	width: 200px;
+	height: 50px;
+	
+	background-color: rgba(112,63,128,1.0);
+	color: white;
+	
+	margin: 0 auto;
+	
+	margin-top: 30px;
+	margin-bottom: 30px;
+	
+	text-align:center;
+	font-family: PTSANS;
+    font-size: 18px;
+	line-height: 50px;
+	
+}
+
+.adicionarButton:hover{
+	background-color: rgba(162,123,178,1.0);
+	cursor: pointer;
+}
+

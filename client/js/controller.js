@@ -64,7 +64,9 @@ app.controller('aboutController', function($scope,$routeParams,$window)
 app.controller('userController', function($scope,$routeParams,$cookies,$window)
 {
 	var selectedWeather = []; 
-	var selectedDays= []; 
+	var selectedDays = []; 
+	var selectedSunPosition = [];
+	var selectedTide = -1;
 	
 	function resetSelectedW(){
 		var array = [];
@@ -86,14 +88,34 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	}
 	selectedDays = resetSelectedD();
 	
+	function resetSelectedSP(){
+		var array = [];
+		for(var i = 1; i<3; i++)
+		{
+			array[i] = false;
+		}
+		return array;
+	}
+	selectedSunPosition = resetSelectedSP();
+	
 	$scope.ID = $cookies.get("userid"); //$routeParams.Id
 	$scope.Name = $cookies.get("username"); //$routeParams.Id
 	$scope.UpURL = $cookies.get("userurl");
+	
 	$scope.sWeather = selectedWeather;
 	$scope.sDays = selectedDays;
+	$scope.sSunPosition = selectedSunPosition;
+	$scope.selectedTide = -1;
 	
 	initialize();
-
+	
+	var apiRequisito = "http://joaotrindade.pt:80/api/Requisito/";
+	var userid = $cookies.get("userid");
+	$.post(apiurl, {idUtilizador : userid}).then( function(response)
+	{
+		console.log(response);
+	}
+	
 	$scope.IconURL = "Sun.png";
 	
 	$scope.getLocality = function codeAddress() {
@@ -176,6 +198,108 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			selectedDays[id] = true;
 		}
 		
+	}
+	
+	$scope.activeSunPosition = function selectSP(id){
+		
+		if(selectedSunPosition[id])
+		{	
+			selectedSunPosition[id] = false;
+		}
+		else
+		{
+			selectedSunPosition[id] = true;
+		}
+		
+	}
+	
+	$scope.activeTide = function selectTide(id){
+		
+		if(id != selectedTide)
+		{
+			selectedTide = id;
+			$scope.selectedTide = id;
+		}
+		else
+		{
+			selectedTide = -1;
+			$scope.selectedTide = -1;
+		}
+	}
+	
+	$scope.addRestriction = function(){
+		/*
+		{
+			"id": 1,
+			"segundaStatus": 2,
+			"tercaStatus": 3,
+			"quartaStatus": 4,
+			"quintaStatus": 5,
+			"sextaStatus": 6,
+			"sabadoStatus": 7,
+			"domingoStatus": 8,
+			"idRequisito": 9,
+			"estado": 10,
+			"horaInicio": 11,
+			"horaFim": 12,
+			"sunset": 13,
+			"sunrise": 14,
+			"EstadoTempo": null,
+			"EstadoMares": null,
+			"EstadoLua": null
+		}
+		*/
+		alert("add");
+		var estadoTids = [32,44,9,26,11,4,20,16,24,17];
+		var estadoT = "[";
+		var n = 0;
+		for(var i = 1; i<11; i++)
+		{
+			if(selectedWeather[i])
+			{
+				estadoT += '"' + estadoTids[i-1] + '",';
+				n++;
+			}
+		}
+		if(n!=0)
+		{
+			estadoT = estadoT.substring(estadoT, estadoT.length - 1);
+		}
+		estadoT+="]";
+		
+		var estadoM ="";
+		if(selectedTide == -1)
+			estadoM="null";
+		else
+			estadoM='["' + selectedTide + '"]';
+			
+		var j = '{ "segundaStatus":"' + selectedDays[1] + '",' +
+				'"tercaStatus":"' + selectedDays[2] + '",' +
+				'"quartaStatus":"' + selectedDays[3] + '",' +
+				'"quintaStatus":"' + selectedDays[4] + '",' +
+				'"sextaStatus":"' + selectedDays[5] + '",' +
+				'"sabadoStatus":"' + selectedDays[6] + '",' +
+				'"domingoStatus":"' + selectedDays[7] + '",' +
+				'"idRequisito": "-1",' +
+				'"estado":"false",' +
+				'"horaInicio":"' + document.getElementById('initTime').value + '",' +
+				'"horaFim":"' + document.getElementById('endTime').value + '",' +
+				'"sunset":"' + selectedSunPosition[1] + '",' +
+				'"sunrise":"' + selectedSunPosition[2] + '",' +
+				'"EstadoTempo":' + estadoT + ',' +
+				'"EstadoMares":' + estadoM + ',' +
+				'"EstadoLua": null' + 
+				'}';
+		
+		var obj = JSON.parse(j);
+		console.log(obj);
+		
+		var apiurl = "http://joaotrindade.pt:80/api/AdicionaCondicao/";
+		
+		/*$.post(apiurl, {Email : username, Password : password}).then( function(response)
+		{
+			console.log(response);
+		}*/
 	}
 });
 
