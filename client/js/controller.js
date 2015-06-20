@@ -274,7 +274,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		{
 			if(selectedWeather[i])
 			{
-				estadoT += estadoTids[i-1] + ',';
+				estadoT += '{"id":' + estadoTids[i-1] + '},';
 				n++;
 			}
 		}
@@ -284,7 +284,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		}
 		estadoT+="]";
 		
-		var estadoM ='[' + selectedTide + ']';
+		var estadoM ='[{"id":' + selectedTide + '}]';
 			
 		var j = '{ "segundaStatus":' + selectedDays2[1] + ',' +
 				'"tercaStatus":' + selectedDays2[2] + ',' +
