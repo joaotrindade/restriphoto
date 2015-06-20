@@ -228,6 +228,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	}
 	
 	$scope.addRestriction = function(){
+		/* MEXE SO AQUI TRINITY xD */
+	
 		/*
 		{
 			"id": 1,
@@ -286,7 +288,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		estadoT+="]";
 		
 		var estadoM = "";
-		if(selectTide == 2)
+		if(selectedTide == 2)
 			estadoM = 'null';
 		else
 			estadoM = '[{"id":' + selectedTide + ',"nome":"Tides"}]';
