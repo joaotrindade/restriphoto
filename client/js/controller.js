@@ -285,7 +285,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		}
 		estadoT+="]";
 		
-		var estadoM ='[{"id":' + selectedTide + '}]';
+		var estadoM ='[{"id":' + selectedTide + ',"nome":"Tides"}]';
 			
 		var j = '{ "segundaStatus":' + selectedDays2[1] + ',' +
 				'"tercaStatus":' + selectedDays2[2] + ',' +
