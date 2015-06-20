@@ -268,13 +268,14 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		}
 		
 		var estadoTids = [32,44,9,26,11,4,20,16,24,17];
+		var estadoTnames = ["Sunny","Partly Cloudy","Drizzle","Cloudy","Showers","Thunderstorms","Foggy","Snow","Windy","Hail"];
 		var estadoT = "[";
 		var n = 0;
 		for(var i = 1; i<11; i++)
 		{
 			if(selectedWeather[i])
 			{
-				estadoT += '{"id":' + estadoTids[i-1] + '},';
+				estadoT += '{"id":' + estadoTids[i-1] + ',"nome":"' + estadoTnames[i-1] + '"},';
 				n++;
 			}
 		}
