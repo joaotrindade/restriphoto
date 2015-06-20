@@ -285,7 +285,11 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		}
 		estadoT+="]";
 		
-		var estadoM ='[{"id":' + selectedTide + ',"nome":"Tides"}]';
+		var estadoM = "";
+		if(selectTide == 2)
+			estadoM = 'null';
+		else
+			estadoM = '[{"id":' + selectedTide + ',"nome":"Tides"}]';
 		
 		var horaInit = parseInt(document.getElementById('initTime').value.substring(document.getElementById('initTime').value, 2));
 		var horaFinit = parseInt(document.getElementById('endTime').value.substring(document.getElementById('endTime').value, 2));
