@@ -66,7 +66,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	var selectedWeather = []; 
 	var selectedDays = []; 
 	var selectedSunPosition = [];
-	var selectedTide = -1;
+	var selectedTide = 2;
 	
 	function resetSelectedW(){
 		var array = [];
@@ -105,7 +105,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	$scope.sWeather = selectedWeather;
 	$scope.sDays = selectedDays;
 	$scope.sSunPosition = selectedSunPosition;
-	$scope.selectedTide = -1;
+	$scope.selectedTide = 2;
 	
 	initialize();
 	
@@ -222,8 +222,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		}
 		else
 		{
-			selectedTide = -1;
-			$scope.selectedTide = -1;
+			selectedTide = 2;
+			$scope.selectedTide = 2;
 		}
 	}
 	
@@ -249,7 +249,24 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			"EstadoLua": null
 		}
 		*/
-		alert("add");
+		var selectedDays2 = [];
+		for(var i = 1; i<8; i++)
+		{
+			if(selectedDays[i])
+				selectedDays2[i] = 1;
+			else
+				selectedDays2[i] = 0;
+		}
+		
+		var selectedSunPosition2 = [];
+		for(var i = 1; i<3; i++)
+		{
+			if(selectedSunPosition[i])
+				selectedSunPosition2[i] = 1;
+			else
+				selectedSunPosition2[i] = 0;
+		}
+		
 		var estadoTids = [32,44,9,26,11,4,20,16,24,17];
 		var estadoT = "[";
 		var n = 0;
@@ -268,24 +285,24 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		estadoT+="]";
 		
 		var estadoM ="";
-		if(selectedTide == -1)
+		if(selectedTide == 2)
 			estadoM="null";
 		else
 			estadoM='["' + selectedTide + '"]';
 			
-		var j = '{ "segundaStatus":"' + selectedDays[1] + '",' +
-				'"tercaStatus":"' + selectedDays[2] + '",' +
-				'"quartaStatus":"' + selectedDays[3] + '",' +
-				'"quintaStatus":"' + selectedDays[4] + '",' +
-				'"sextaStatus":"' + selectedDays[5] + '",' +
-				'"sabadoStatus":"' + selectedDays[6] + '",' +
-				'"domingoStatus":"' + selectedDays[7] + '",' +
-				'"idRequisito": "-1",' +
-				'"estado":"false",' +
+		var j = '{ "segundaStatus":' + selectedDays2[1] + ',' +
+				'"tercaStatus":' + selectedDays2[2] + ',' +
+				'"quartaStatus":' + selectedDays2[3] + ',' +
+				'"quintaStatus":' + selectedDays2[4] + ',' +
+				'"sextaStatus":' + selectedDays2[5] + ',' +
+				'"sabadoStatus":' + selectedDays2[6] + ',' +
+				'"domingoStatus":' + selectedDays2[7] + ',' +
+				'"idRequisito": 1,' +
+				'"estado": 0,' +
 				'"horaInicio":"' + document.getElementById('initTime').value + '",' +
 				'"horaFim":"' + document.getElementById('endTime').value + '",' +
-				'"sunset":"' + selectedSunPosition[1] + '",' +
-				'"sunrise":"' + selectedSunPosition[2] + '",' +
+				'"sunset":' + selectedSunPosition2[1] + ',' +
+				'"sunrise":' + selectedSunPosition2[2] + ',' +
 				'"EstadoTempo":' + estadoT + ',' +
 				'"EstadoMares":' + estadoM + ',' +
 				'"EstadoLua": null' + 
@@ -296,10 +313,10 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		
 		var apiurl = "http://joaotrindade.pt:80/api/AdicionaCondicao/";
 		
-		/*$.post(apiurl, {Email : username, Password : password}).then( function(response)
+		$.post(apiurl, {bananas:obj}).then( function(response)
 		{
 			console.log(response);
-		}*/
+		}
 	}
 });
 
