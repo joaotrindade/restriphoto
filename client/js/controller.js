@@ -406,7 +406,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				'coordenadas' : globalCoordenates,
 				'list' : null
 			}
-		
+			
+			console.log(JSON.stringify(obj2));
 			$.ajax({
 			  url:apiurl2,
 			  type:"POST",
