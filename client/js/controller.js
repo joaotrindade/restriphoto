@@ -223,16 +223,34 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				globalMarker = marker;
 				globalMarker.setMap(map);
 				map.setCenter(results[0].geometry.location);
+				globalCoordenates = results[0].geometry.location.A + " ; " + results[0].geometry.location.F;
 				
 				globalLocality = "";
 				globalDistrict = "";
+				globalRoute = "";
 				
+				console.log(results);
+				var level2 = false;
 				//Funciona apenas com Portugal para já
 				for(var i=0; i< results[0].address_components.length ; i++)
 				{
+					if(results[0].address_components[i].types[0] == "route")
+					{
+						globalRoute= results[0].address_components[i].short_name;
+						//alert("Localidade = " + globalLocality );
+					}
+				
 					if(results[0].address_components[i].types[0] == "locality")
 					{
+						if(!level2)
+							globalLocality = results[0].address_components[i].long_name;
+						//alert("Localidade = " + $scope.addLocalidade );
+					}
+					
+					if(results[0].address_components[i].types[0] == "administrative_area_level_2")
+					{
 						globalLocality = results[0].address_components[i].long_name;
+						level2 = true;
 						//alert("Localidade = " + $scope.addLocalidade );
 					}
 					
@@ -246,8 +264,10 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				$scope.addLocalidade = globalLocality;
 				$scope.addDistrito = globalDistrict;
 				
-				if(globalLocality != "")
-					document.getElementById('address').value = globalLocality + " , " + globalDistrict;
+				if(globalRoute != "")
+					document.getElementById('address').value = globalRoute + ", " + globalLocality + ", " + globalDistrict;
+				else if(globalLocality != "")
+					document.getElementById('address').value = globalLocality + ", " + globalDistrict;
 				else
 					document.getElementById('address').value = globalDistrict;
 		    } 
