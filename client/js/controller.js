@@ -421,8 +421,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			{ 
 				'localizacao' : globalDistrict,
 				'local' : local,
-				'Porto' : portoMar,
-				'idUtilizador' : idUser,
+				'Porto' : parseInt(portoMar),
+				'idUtilizador' : parseInt(idUser),
 				'coordenadas' : globalCoordenates,
 				'list' : null
 			}
@@ -436,7 +436,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			  success: function(response){
 				console.log(response);
 				
-				/*var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
+				var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
 				
 				var obj = 
 				{ 
@@ -447,7 +447,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 					'sextaStatus' : selectedDays2[5],
 					'sabadoStatus' : selectedDays2[6],
 					'domingoStatus' : selectedDays2[7],
-					'idRequisito' : existID,
+					'idRequisito' : response.idRequisito,
 					'horaInicio' : horaInit, 
 					'horaFim' : horaFinit,
 					'sunset' : selectedSunPosition2[1],
@@ -464,8 +464,9 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				  contentType:"application/json",
 				  success: function(response){
 					console.log(response);
+					resetConditions()
 				  }
-				});	*/
+				});	
 			  }
 			});
 			
@@ -482,9 +483,21 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			  contentType:"application/json",
 			  success: function(response){
 				console.log(response);
+				resetConditions()
 			  }
 			});	
 		}
+	}
+	
+	function resetConditions(){
+		selectedDays = resetSelectedD();
+		selectedSunPosition = resetSelectedSP();
+		selectedWeather = resetSelectedW();
+		
+		$scope.sWeather = selectedWeather;
+		$scope.sDays = selectedDays;
+		$scope.sSunPosition = selectedSunPosition;
+		$scope.selectedTide = 3;
 	}
 });
 
