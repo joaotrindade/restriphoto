@@ -378,7 +378,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			"'EstadoLua'" : null
 		}
 	
-		console.lgo(obj);
+		console.log(obj);
 
 		var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
 	
