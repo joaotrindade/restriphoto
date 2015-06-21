@@ -327,6 +327,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			if(selectedWeather[i])
 			{
 				var temp = {'id': estadoTids[i]};
+				if(i==10)
+					console.log(temp);
 				estadoT.push(temp);
 			}
 		}
