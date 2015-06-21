@@ -720,11 +720,24 @@ body {
 	width: 50px;
 	height: 30px;
 	margin-left:10px;
+	margin-top:7px; 
 	
 	background-image: url(../img/weather_icons/Wind.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position:center center;
+}
+
+.weatherShowDays{
+	display: inline-block;
+	height: 25px;
+	color: #703F80;
+	font-family: PTSANS;
+	font-size: 16px;
+	line-height: 25px;
+	vertical-align: top;
+	margin-top: 8px;
+	margin-left: 20px;
 }
 
 .spanInlineText{

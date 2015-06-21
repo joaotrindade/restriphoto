@@ -155,8 +155,48 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 					response[i].list[j].etIcons = temp;
 					temp=[];
 					ntemp = 0;
+					
+					var temp2=[];
+					var ntemp2 = 0;
+					if(response[i].list[j].segundaStatus)
+					{
+						temp2[ntemp2] = "Seg";
+						ntemp2++;
+					}
+					else if(response[i].list[j].tercaStatus)
+					{
+						temp2[ntemp2] = "Ter";
+						ntemp2++;
+					}
+					else if(response[i].list[j].quartaStatus)
+					{
+						temp2[ntemp2] = "Qua";
+						ntemp2++;
+					}
+					else if(response[i].list[j].quintaStatus)
+					{
+						temp2[ntemp2] = "Qui";
+						ntemp2++;
+					}
+					else if(response[i].list[j].sextaStatus)
+					{
+						temp2[ntemp2] = "Sex";
+						ntemp2++;
+					}
+					else if(response[i].list[j].sabadoStatus)
+					{
+						temp2[ntemp2] = "Sab";
+						ntemp2++;
+					}
+					else if(response[i].list[j].domingoStatus)
+					{
+						temp2[ntemp2] = "Dom";
+						ntemp2++;
+					}
+					response[i].list[j].etDays = temp2;
 				}
 			}
+			
 			
 			$scope.$apply(function () {
 				$scope.nRestrictions = response.length;
@@ -382,22 +422,6 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		console.log(JSON.stringify(obj));
 		
 		var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
-	
-		/*$.post(apiurl, {'condicoes':a}).then( function(response)
-		{
-			console.log(response);
-		});*/
-		
-		$.ajax({
-		  url:apiurl,
-		  type:"POST",
-		  data: obj,
-		  contentType:"application/json",
-		  success: function(response){
-			console.log(response + " 1 ");
-		  }
-		});
-		
 		
 		$.ajax({
 		  url:apiurl,
@@ -405,23 +429,9 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		  data: JSON.stringify(obj),
 		  contentType:"application/json",
 		  success: function(response){
-			console.log(response + " 2 ");
+			console.log(response);
 		  }
 		});	
-		
-		
-		var obj2 = JSON.stringify(obj).substring(1, JSON.stringify(obj).length - 1);
-		console.log("novo -> " + obj2 + " <-");
-		
-		$.ajax({
-		  url:apiurl,
-		  type:"POST",
-		  data: obj2,
-		  contentType:"application/json",
-		  success: function(response){
-			console.log(response + " 3 ");
-		  }
-		});
 	}
 });
 
