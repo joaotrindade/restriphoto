@@ -322,7 +322,7 @@ body {
 
 .weather_restriction{
 	display: inline-block;
-	width: 150px;
+	width: 1120px;
 	height: 25px;
 	margin-left:20px;
 	
@@ -337,7 +337,7 @@ body {
 
 .tides_restriction{
 	display: inline-block;
-	width: 150px;
+	width: 100px;
 	height: 25px;
 	margin-left:20px;
 	
@@ -352,7 +352,7 @@ body {
 
 .moon_restriction{
 	display: inline-block;
-	width: 150px;
+	width: 120px;
 	height: 25px;
 	margin-left:20px;
 	
@@ -367,7 +367,7 @@ body {
 
 .other_restriction{
 	display: inline-block;
-	width: 150px;
+	width: 100px;
 	height: 25px;
 	margin-left:20px;
 	
