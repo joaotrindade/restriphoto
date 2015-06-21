@@ -10,10 +10,14 @@
 			<div class="user_restrictions">
 				<div class="user_restrictions_title">As minhas restrições</div>
 				<div class="user_restrictions_container">
-					<div ng-repeat="r in rests" class="restriction">
+					<div ng-repeat="r in rests" class="restriction" style="position:static;">
+						
 						<div class="restriction_city">{{r.local}}</div>
-						<div ng-repeat="conditions in r.list" class="restrictionViceCity">
-							<div class="restriction_icon" style="background-image: url(img/weather_icons/{{IconURL}})"></div>
+						<div ng-repeat="conditions in r.list" class="restrictionViceCity"  style="position:static;">
+							<div class="weatherConditions">
+								<span>Estados Tempo</span>
+								<div ng-repeat="i in conditions.etIcons" class="weatherCIcon" style="position:static; background-image: url(img/weather_icons/{{i}});"></div>
+							</div>
 							<div class="restriction_data">
 								<div class="restriction_location">Hora Inicio: {{conditions.horaInicio}}</div>
 								<div class="restriction_restrictions">
@@ -24,6 +28,7 @@
 								</div>
 							</div>
 						</div>
+						
 					</div>
 				</div>
 			</div>

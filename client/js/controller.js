@@ -121,6 +121,43 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			$scope.nRestrictions = 0;
 		else
 		{
+			var temp = [];
+			var ntemp = 0;
+			for(var i=0; i<response.length; i++)
+			{
+				for(var j=0; j<response[i].list.length; j++)
+				{
+					for(var k=0; k<response[i].list[j].EstadoTempo.length; k++)
+					{
+						if(response[i].list[j].EstadoTempo[k]==32)
+							temp[ntemp] = "Sun.png";
+						else if(response[i].list[j].EstadoTempo[k]==44)
+							temp[ntemp] = "Sun_Cloud.png";
+						else if(response[i].list[j].EstadoTempo[k]==9)
+							temp[ntemp] = "DownPour.png";
+						else if(response[i].list[j].EstadoTempo[k]==26)
+							temp[ntemp] = "Mostly_Cloudy.png";
+						else if(response[i].list[j].EstadoTempo[k]==11)
+							temp[ntemp] = "Rain.png";
+						else if(response[i].list[j].EstadoTempo[k]==4)
+							temp[ntemp] = "Thunder.png";
+						else if(response[i].list[j].EstadoTempo[k]==20)
+							temp[ntemp] = "Fog.png";
+						else if(response[i].list[j].EstadoTempo[k]==16)
+							temp[ntemp] = "Snow.png";
+						else if(response[i].list[j].EstadoTempo[k]==24)
+							temp[ntemp] = "Wind.png";
+						else if(response[i].list[j].EstadoTempo[k]==17)
+							temp[ntemp] = "Hail.png";
+						
+						ntemp++;
+					}
+					response[i].list[j].etIcons = temp;
+					temp=[];
+					ntemp = 0;
+				}
+			}
+			
 			$scope.$apply(function () {
 				$scope.nRestrictions = response.length;
 				$scope.rests = response;
