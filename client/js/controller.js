@@ -334,7 +334,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		var estadoM = [];
 		if(selectedTide == 3) estadoM = null;
 		else
-			estadoM.push({'id':selectedTide});
+			estadoM.push({"id":selectedTide});
 		
 		var horaInit = parseInt(document.getElementById('initTime').value.substring(document.getElementById('initTime').value, 2));
 		var horaFinit = parseInt(document.getElementById('endTime').value.substring(document.getElementById('endTime').value, 2));
@@ -377,6 +377,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			"'EstadoMares'" : estadoM,
 			"'EstadoLua'" : null
 		}
+	
+		console.lgo(obj);
 
 		var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
 	
