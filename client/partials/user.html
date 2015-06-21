@@ -23,13 +23,14 @@
 								<div ng-repeat="i in conditions.etDays" class="weatherShowDays" style="position:static;">{{i}}</div>
 							</div>
 							<div class="restriction_data">
-								<div class="restriction_location">Hora Inicio: {{conditions.horaInicio}}:00</div>
-								<div class="restriction_location">Hora Fim: {{conditions.horaFim}}:00</div>
+								<!--<div class="restriction_location"></div>-->
 								<div class="restriction_restrictions">
-									<div class="weather_restriction">Weather: Sunny</div>
-									<div class="tides_restriction">Tides: High</div>
-									<div class="moon_restriction">Moon: Full</div>
-									<div class="other_restriction"></div>
+									<div class="weather_restriction">Hora Inicio: {{conditions.horaInicio}}:00</div>
+									<div class="moon_restriction">Hora Fim: {{conditions.horaFim}}:00</div>
+									<div ng-if="conditions.EstadoMares[0] == 1"class="tides_restriction">Maré: Baixa</div>
+									<div ng-if="conditions.EstadoMares[0] == 2"class="tides_restriction">Maré: Alta</div>
+									<div ng-if="conditions.sunrise==1" class="other_restriction">Nascer do Sol</div>
+									<div ng-if="conditions.sunset==1" class="other_restriction">Pôr do Sol</div>
 								</div>
 							</div>
 						</div>
