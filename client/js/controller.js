@@ -291,10 +291,12 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		if(selectedWeather[id])
 		{	
 			selectedWeather[id] = false;
+			$scope.sWeather[id] = false;
 		}
 		else
 		{
 			selectedWeather[id] = true;
+			$scope.sWeather[id] = true;
 		}
 		
 	}
@@ -304,10 +306,12 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		if(selectedDays[id])
 		{	
 			selectedDays[id] = false;
+			$scope.sDays[id] = false;
 		}
 		else
 		{
 			selectedDays[id] = true;
+			$scope.sDays[id] = true;
 		}
 		
 	}
@@ -317,10 +321,12 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		if(selectedSunPosition[id])
 		{	
 			selectedSunPosition[id] = false;
+			$scope.sSunPosition[id] = false;
 		}
 		else
 		{
 			selectedSunPosition[id] = true;
+			$scope.sSunPosition[id] = true;
 		}
 		
 	}
