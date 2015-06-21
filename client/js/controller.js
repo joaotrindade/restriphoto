@@ -495,14 +495,17 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	}
 	
 	function resetConditions(){
-		selectedDays = resetSelectedD();
-		selectedSunPosition = resetSelectedSP();
-		selectedWeather = resetSelectedW();
+		$scope.$apply(function () {
+			selectedDays = resetSelectedD();
+			selectedSunPosition = resetSelectedSP();
+			selectedWeather = resetSelectedW();
+			
+			$scope.sWeather = selectedWeather;
+			$scope.sDays = selectedDays;
+			$scope.sSunPosition = selectedSunPosition;
+			$scope.selectedTide = 3;
+		});
 		
-		$scope.sWeather = selectedWeather;
-		$scope.sDays = selectedDays;
-		$scope.sSunPosition = selectedSunPosition;
-		$scope.selectedTide = 3;
 	}
 });
 
