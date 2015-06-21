@@ -360,7 +360,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		var apiurl = "http://joaotrindade.pt:80/api/AdicionaCondicao/";
 	
 
-		$.post(apiurl, {condicoes:obj}).then( function(response)
+		$.post(apiurl, {'condicoes':obj}).then( function(response)
 		{
 			console.log(response);
 		});
