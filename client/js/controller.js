@@ -299,12 +299,12 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			'idUtilizador' : parseInt(idUser)
 		}
 		
-		console.log(obj);
+		console.log(JSON.stringify(obj));
 		
 		$.ajax({
 		  url:apiurl,
 		  type:"POST",
-		  data: obj,
+		  data: JSON.stringify(obj),
 		  contentType:"application/json",
 		  success: function(response){
 			console.log(response);
