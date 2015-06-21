@@ -112,98 +112,101 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	
 	initialize();
 	
-	var apiRequisito = "http://joaotrindade.pt:80/api/Requisito/";
-	var userid = $cookies.get("userid");
-	$.post(apiRequisito , {idUtilizador : userid}).then( function(response)
-	{
-		console.log(response);
-		if(response[0].StatusCode == 666)
-			$scope.nRestrictions = 0;
-		else
+	function getRestris(){
+		var apiRequisito = "http://joaotrindade.pt:80/api/Requisito/";
+		var userid = $cookies.get("userid");
+		$.post(apiRequisito , {idUtilizador : userid}).then( function(response)
 		{
-			var temp = [];
-			var ntemp = 0;
-			for(var i=0; i<response.length; i++)
+			console.log(response);
+			if(response[0].StatusCode == 666)
+				$scope.nRestrictions = 0;
+			else
 			{
-				for(var j=0; j<response[i].list.length; j++)
+				var temp = [];
+				var ntemp = 0;
+				for(var i=0; i<response.length; i++)
 				{
-					for(var k=0; k<response[i].list[j].EstadoTempo.length; k++)
+					for(var j=0; j<response[i].list.length; j++)
 					{
-						if(response[i].list[j].EstadoTempo[k].id==32)
-							temp[ntemp] = "Sun.png";
-						else if(response[i].list[j].EstadoTempo[k].id==44)
-							temp[ntemp] = "Sun_Cloud.png";
-						else if(response[i].list[j].EstadoTempo[k].id==9)
-							temp[ntemp] = "DownPour.png";
-						else if(response[i].list[j].EstadoTempo[k].id==26)
-							temp[ntemp] = "Mostly_Cloudy.png";
-						else if(response[i].list[j].EstadoTempo[k].id==11)
-							temp[ntemp] = "Rain.png";
-						else if(response[i].list[j].EstadoTempo[k].id==4)
-							temp[ntemp] = "Thunder.png";
-						else if(response[i].list[j].EstadoTempo[k].id==20)
-							temp[ntemp] = "Fog.png";
-						else if(response[i].list[j].EstadoTempo[k].id==16)
-							temp[ntemp] = "Snow.png";
-						else if(response[i].list[j].EstadoTempo[k].id==24)
-							temp[ntemp] = "Wind.png";
-						else if(response[i].list[j].EstadoTempo[k].id==17)
-							temp[ntemp] = "Hail.png";
+						for(var k=0; k<response[i].list[j].EstadoTempo.length; k++)
+						{
+							if(response[i].list[j].EstadoTempo[k].id==32)
+								temp[ntemp] = "Sun.png";
+							else if(response[i].list[j].EstadoTempo[k].id==44)
+								temp[ntemp] = "Sun_Cloud.png";
+							else if(response[i].list[j].EstadoTempo[k].id==9)
+								temp[ntemp] = "DownPour.png";
+							else if(response[i].list[j].EstadoTempo[k].id==26)
+								temp[ntemp] = "Mostly_Cloudy.png";
+							else if(response[i].list[j].EstadoTempo[k].id==11)
+								temp[ntemp] = "Rain.png";
+							else if(response[i].list[j].EstadoTempo[k].id==4)
+								temp[ntemp] = "Thunder.png";
+							else if(response[i].list[j].EstadoTempo[k].id==20)
+								temp[ntemp] = "Fog.png";
+							else if(response[i].list[j].EstadoTempo[k].id==16)
+								temp[ntemp] = "Snow.png";
+							else if(response[i].list[j].EstadoTempo[k].id==24)
+								temp[ntemp] = "Wind.png";
+							else if(response[i].list[j].EstadoTempo[k].id==17)
+								temp[ntemp] = "Hail.png";
+							
+							ntemp++;
+						}
+						response[i].list[j].etIcons = temp;
+						temp=[];
+						ntemp = 0;
 						
-						ntemp++;
+						var temp2=[];
+						var ntemp2 = 0;
+						if(response[i].list[j].segundaStatus)
+						{
+							temp2[ntemp2] = "Seg";
+							ntemp2++;
+						}
+						if(response[i].list[j].tercaStatus)
+						{
+							temp2[ntemp2] = "Ter";
+							ntemp2++;
+						}
+						if(response[i].list[j].quartaStatus)
+						{
+							temp2[ntemp2] = "Qua";
+							ntemp2++;
+						}
+						if(response[i].list[j].quintaStatus)
+						{
+							temp2[ntemp2] = "Qui";
+							ntemp2++;
+						}
+						if(response[i].list[j].sextaStatus)
+						{
+							temp2[ntemp2] = "Sex";
+							ntemp2++;
+						}
+						if(response[i].list[j].sabadoStatus)
+						{
+							temp2[ntemp2] = "Sab";
+							ntemp2++;
+						}
+						if(response[i].list[j].domingoStatus)
+						{
+							temp2[ntemp2] = "Dom";
+							ntemp2++;
+						}
+						response[i].list[j].etDays = temp2;
 					}
-					response[i].list[j].etIcons = temp;
-					temp=[];
-					ntemp = 0;
-					
-					var temp2=[];
-					var ntemp2 = 0;
-					if(response[i].list[j].segundaStatus)
-					{
-						temp2[ntemp2] = "Seg";
-						ntemp2++;
-					}
-					if(response[i].list[j].tercaStatus)
-					{
-						temp2[ntemp2] = "Ter";
-						ntemp2++;
-					}
-					if(response[i].list[j].quartaStatus)
-					{
-						temp2[ntemp2] = "Qua";
-						ntemp2++;
-					}
-					if(response[i].list[j].quintaStatus)
-					{
-						temp2[ntemp2] = "Qui";
-						ntemp2++;
-					}
-					if(response[i].list[j].sextaStatus)
-					{
-						temp2[ntemp2] = "Sex";
-						ntemp2++;
-					}
-					if(response[i].list[j].sabadoStatus)
-					{
-						temp2[ntemp2] = "Sab";
-						ntemp2++;
-					}
-					if(response[i].list[j].domingoStatus)
-					{
-						temp2[ntemp2] = "Dom";
-						ntemp2++;
-					}
-					response[i].list[j].etDays = temp2;
 				}
+				
+				
+				$scope.$apply(function () {
+					$scope.nRestrictions = response.length;
+					$scope.rests = response;
+				});
 			}
-			
-			
-			$scope.$apply(function () {
-				$scope.nRestrictions = response.length;
-				$scope.rests = response;
-			});
-		}
-	});
+		});
+	}
+	getRestris();
 	
 	$scope.IconURL = "Sun.png";
 	
@@ -464,7 +467,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				  contentType:"application/json",
 				  success: function(response){
 					console.log(response);
-					resetConditions()
+					resetConditions();
+					getRestris();
 				  }
 				});	
 			  }
@@ -483,7 +487,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			  contentType:"application/json",
 			  success: function(response){
 				console.log(response);
-				resetConditions()
+				resetConditions();
+				getRestris();
 			  }
 			});	
 		}
