@@ -324,6 +324,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		var estadoT = [];
 		for(var i = 1; i<11; i++)
 		{
+			console.log("i="+i+" -> selectedWeather[i]="+selectedWeather[i]);
 			if(selectedWeather[i])
 			{
 				var temp = {'id': estadoTids[i]};
