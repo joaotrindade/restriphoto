@@ -419,7 +419,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		  data: obj2,
 		  contentType:"application/json",
 		  success: function(response){
-			console.log(response + " 2 ");
+			console.log(response + " 3 ");
 		  }
 		});
 	}
