@@ -271,7 +271,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		
 		var estadoTids = [32,44,9,26,11,4,20,16,24,17];
 		var estadoTnames = ["Sunny","Partly Cloudy","Drizzle","Cloudy","Showers","Thunderstorms","Foggy","Snow","Windy","Hail"];
-		var estadoT = "[";
+		/*var estadoT = "[";
 		var n = 0;
 		for(var i = 1; i<11; i++)
 		{
@@ -287,18 +287,34 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			estadoT+="]";
 		}
 		else
-			estadoT = "null";
+			estadoT = "null";*/
+			
+		var estadoT = [];
+		for(var i = 1; i<11; i++)
+		{
+			if(selectedWeather[i])
+			{
+				var temp = {'id': estadoTids[i]};
+				estadoT.push(temp);
+			}
+		}
 		
 		
-		var estadoM = "";
+		/*var estadoM = "";
 		if(selectedTide == 2)
 			estadoM = 'null';
 		else
 			estadoM = '[{"id":' + selectedTide + ',"nome":"Tides"}]';
+		*/
+		
+		var estadoM = [];
+		if(selectedTide == 2) estadoM = null;
+		else
+			estadoM.push({'id':selectedTide});
 		
 		var horaInit = parseInt(document.getElementById('initTime').value.substring(document.getElementById('initTime').value, 2));
 		var horaFinit = parseInt(document.getElementById('endTime').value.substring(document.getElementById('endTime').value, 2));
-		var j = '{ "segundaStatus":' + selectedDays2[1] + ',' +
+		/*var j = '{ "segundaStatus":' + selectedDays2[1] + ',' +
 				'"tercaStatus":' + selectedDays2[2] + ',' +
 				'"quartaStatus":' + selectedDays2[3] + ',' +
 				'"quintaStatus":' + selectedDays2[4] + ',' +
@@ -310,13 +326,34 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				'"horaFim":' + horaFinit+ ',' +
 				'"sunset":' + selectedSunPosition2[1] + ',' +
 				'"sunrise":' + selectedSunPosition2[2] + ',' +
-				'"\'EstadoTempo\'":' + estadoT + ',' +
+				"'EstadoTempo':" + estadoT + ',' +
 				'"\'EstadoMares\'":' + estadoM + ',' +
 				'"\'EstadoLua\'": null' + 
 				'}';
 		
-		var obj = JSON.parse(j);
 		console.log(j);
+		
+		var obj = JSON.parse(j);*/
+		
+		var obj = 
+		{ 
+			'segundaStatus' : selectedDays2[1],
+			'tercaStatus' : selectedDays2[2],
+			'quartaStatus' : selectedDays2[3],
+			'quintaStatus' : selectedDays2[4],
+			'sextaStatus' : selectedDays2[5],
+			'sabadoStatus' : selectedDays2[6],
+			'domingoStatus' : selectedDays2[7],
+			'idRequisito' : 1,
+			'horaInicio' : horaInit,
+			'horaFim' : horaFinit,
+			'sunset' : selectedSunPosition2[1],
+			'sunrise' : selectedSunPosition2[2],
+			'EstadoTempo' : estadoT,
+			'EstadoMares' : estadoM,
+			'EstadoLua' : null
+		}
+		
 		console.log(obj);
 		
 		var apiurl = "http://joaotrindade.pt:80/api/AdicionaCondicao/";
