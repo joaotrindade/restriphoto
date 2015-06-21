@@ -411,7 +411,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		console.log(obj);
 		console.log(JSON.stringify(obj));
 		
-		if(exist)
+		if(!exist)
 		{
 			var apiurl2 = "http://joaotrindade.pt/api/AdicionaRequisito/";
 			
