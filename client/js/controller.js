@@ -345,7 +345,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			'sabadoStatus' : selectedDays2[6],
 			'domingoStatus' : selectedDays2[7],
 			'idRequisito' : 1,
-			'horaInicio' : horaInit,
+			'horaInicio' : horaInit, 
 			'horaFim' : horaFinit,
 			'sunset' : selectedSunPosition2[1],
 			'sunrise' : selectedSunPosition2[2],
@@ -353,6 +353,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			'EstadoMares' : estadoM,
 			'EstadoLua' : null
 		}
+
 		
 		console.log(JSON.stringify(obj));
 		
@@ -367,7 +368,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		$.ajax({
 			url : apiurl,
 			type: "POST",
-			data : JSON.stringify(obj),
+			data : {'condicoes' : JSON.stringify(obj)},
 			contentType : 'application/json',
 			success: function(response){
 				console.log(response);
