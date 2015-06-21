@@ -394,10 +394,34 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		  data: obj,
 		  contentType:"application/json",
 		  success: function(response){
-			console.log(response);
+			console.log(response + " 1 ");
 		  }
 		});
-				
+		
+		
+		$.ajax({
+		  url:apiurl,
+		  type:"POST",
+		  data: JSON.stringify(obj),
+		  contentType:"application/json",
+		  success: function(response){
+			console.log(response + " 2 ");
+		  }
+		});	
+		
+		
+		var obj2 = JSON.stringify(obj).substring(1, JSON.stringify(obj).length - 1);
+		console.log("novo -> " + obj2 + " <-");
+		
+		$.ajax({
+		  url:apiurl,
+		  type:"POST",
+		  data: obj2,
+		  contentType:"application/json",
+		  success: function(response){
+			console.log(response + " 2 ");
+		  }
+		});
 	}
 });
 
