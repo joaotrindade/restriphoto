@@ -53,6 +53,10 @@ app.controller('loginController', function($scope,$location,$timeout,$routeParam
 		});
 		
 	}
+	
+	$scope.goToRegister = function(){
+		$location.path("/register");
+	}
 });
 
 app.controller('registerController', function($scope,$location,$timeout,$routeParams,$cookies)
