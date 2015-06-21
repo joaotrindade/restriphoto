@@ -129,25 +129,25 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				{
 					for(var k=0; k<response[i].list[j].EstadoTempo.length; k++)
 					{
-						if(response[i].list[j].EstadoTempo[k]==32)
+						if(response[i].list[j].EstadoTempo[k].id==32)
 							temp[ntemp] = "Sun.png";
-						else if(response[i].list[j].EstadoTempo[k]==44)
+						else if(response[i].list[j].EstadoTempo[k].id==44)
 							temp[ntemp] = "Sun_Cloud.png";
-						else if(response[i].list[j].EstadoTempo[k]==9)
+						else if(response[i].list[j].EstadoTempo[k].id==9)
 							temp[ntemp] = "DownPour.png";
-						else if(response[i].list[j].EstadoTempo[k]==26)
+						else if(response[i].list[j].EstadoTempo[k].id==26)
 							temp[ntemp] = "Mostly_Cloudy.png";
-						else if(response[i].list[j].EstadoTempo[k]==11)
+						else if(response[i].list[j].EstadoTempo[k].id==11)
 							temp[ntemp] = "Rain.png";
-						else if(response[i].list[j].EstadoTempo[k]==4)
+						else if(response[i].list[j].EstadoTempo[k].id==4)
 							temp[ntemp] = "Thunder.png";
-						else if(response[i].list[j].EstadoTempo[k]==20)
+						else if(response[i].list[j].EstadoTempo[k].id==20)
 							temp[ntemp] = "Fog.png";
-						else if(response[i].list[j].EstadoTempo[k]==16)
+						else if(response[i].list[j].EstadoTempo[k].id==16)
 							temp[ntemp] = "Snow.png";
-						else if(response[i].list[j].EstadoTempo[k]==24)
+						else if(response[i].list[j].EstadoTempo[k].id==24)
 							temp[ntemp] = "Wind.png";
-						else if(response[i].list[j].EstadoTempo[k]==17)
+						else if(response[i].list[j].EstadoTempo[k].id==17)
 							temp[ntemp] = "Hail.png";
 						
 						ntemp++;
