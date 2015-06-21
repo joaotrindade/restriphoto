@@ -357,12 +357,24 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		
 		console.log(JSON.stringify(obj));
 		
-		var apiurl = "http://joaotrindade.pt:80/api/AdicionaCondicao/";
+		var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
 	
+		console.log({'condicoes':obj});
 
 		$.post(apiurl, {'condicoes':obj}).then( function(response)
 		{
 			console.log(response);
+		});
+		
+		$.ajax({
+			url: apiurl,
+			type: 'POST',
+			data: {'condicoes':obj},
+			contentType: 'application/json',
+			success: function(json){
+				console.log(response);
+			}
+			
 		});
 		
 	}
