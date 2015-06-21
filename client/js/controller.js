@@ -290,6 +290,28 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		document.getElementById('address').value = lct;
 	}
 	
+	$scope.deleteL = function(id){
+		var apiurl = "http://joaotrindade.pt:80/api/EliminaRequisito/";
+		
+		var idUser = $cookies.get("userid");
+		var obj = {
+			'id' : parseInt(id),
+			'idUtilizador' : parseInt(idUser)
+		}
+		
+		$.ajax({
+		  url:apiurl,
+		  type:"POST",
+		  data: JSON.stringify(obj),
+		  contentType:"application/json",
+		  success: function(response){
+			console.log(response);
+			getRestris();
+		  }
+		});	
+		
+	}
+	
 	$scope.active = function selectWeather(id){
 		
 		if(selectedWeather[id])

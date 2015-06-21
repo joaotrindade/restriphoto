@@ -287,6 +287,11 @@ body {
 	line-height: 25px;
 	text-align: center;
 	margin-top: 10px;
+	
+	border-bottom: 1px solid rgba(50,50,50,0.1);
+	padding-bottom: 5px;
+	padding-top: 5px;
+	border-top: 1px solid rgba(50,50,50,0.1);
 }
 
 .restriction_city .copyLocation{
@@ -299,10 +304,27 @@ body {
 	background-size: contain;
 	background-position:center center;
 	
-	top: 6px;
+	top: 11px;
 	left: 20px;
 	cursor:pointer;
 }
+
+.restriction_city .deleteLocation{
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	
+	background: url(../img/icons/xmark.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position:center center;
+	
+	top: 11px;
+	right: 20px;
+	cursor:pointer;
+}
+
+
 
 .restriction .restrictionViceCity:nth-child(odd){
 	display:block;
