@@ -286,6 +286,10 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		$scope.addDistrito = globalDistrict;
 	}
 	
+	$scope.copyL = function(lct){
+		document.getElementById('address').value = lct;
+	}
+	
 	$scope.active = function selectWeather(id){
 		
 		if(selectedWeather[id])

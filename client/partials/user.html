@@ -10,9 +10,10 @@
 			<div class="user_restrictions">
 				<div class="user_restrictions_title">As minhas restrições</div>
 				<div class="user_restrictions_container">
+				
 					<div ng-repeat="r in rests" class="restriction" style="position:static;">
 						
-						<div class="restriction_city">{{r.local}}</div>
+						<div class="restriction_city">{{r.local}}<div class="copyLocation" ng-click="copyL(r.local)"></div></div>
 						<div ng-repeat="conditions in r.list" class="restrictionViceCity"  style="position:static;">
 							<div class="weatherConditions">
 								<span class="spanInlineText">Estados Tempo</span>
