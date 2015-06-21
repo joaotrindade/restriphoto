@@ -354,14 +354,24 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			'EstadoLua' : null
 		}
 		
-		console.log(obj);
+		console.log(JSON.stringify(obj));
 		
 		var apiurl = "http://joaotrindade.pt:80/api/AdicionaCondicao/";
 	
 
-		$.post(apiurl, {condicoes:obj}).then( function(response)
+		/*$.post(apiurl, {condicoes:obj, contentType: 'application/json'}).then( function(response)
 		{
 			console.log(response);
+		});*/
+		
+		$.ajax({
+			url : apiurl,
+			type: "POST",
+			data : JSON.stringify(obj),
+			contentType : 'application/json',
+			success: function(response){
+				console.log(response);
+			}
 		});
 	}
 });
