@@ -383,11 +383,12 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		var obj2 = obj2.replace('"EstadoTempo"', "'EstadoTempo'"); 
 		var obj2 = obj2.replace('"EstadoMares"', "'EstadoMares'"); 
 		console.log(obj2);
-		
+		obj = jQuery.parseJSON(obj2)
+		console.log(JSON.stringify(obj));
 
 		var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
 	
-		$.post(apiurl, {'condicoes':obj2}).then( function(response)
+		$.post(apiurl, {'condicoes':obj}).then( function(response)
 		{
 			console.log(response);
 		});
