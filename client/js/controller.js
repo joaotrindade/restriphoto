@@ -163,32 +163,32 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 						temp2[ntemp2] = "Seg";
 						ntemp2++;
 					}
-					else if(response[i].list[j].tercaStatus)
+					if(response[i].list[j].tercaStatus)
 					{
 						temp2[ntemp2] = "Ter";
 						ntemp2++;
 					}
-					else if(response[i].list[j].quartaStatus)
+					if(response[i].list[j].quartaStatus)
 					{
 						temp2[ntemp2] = "Qua";
 						ntemp2++;
 					}
-					else if(response[i].list[j].quintaStatus)
+					if(response[i].list[j].quintaStatus)
 					{
 						temp2[ntemp2] = "Qui";
 						ntemp2++;
 					}
-					else if(response[i].list[j].sextaStatus)
+					if(response[i].list[j].sextaStatus)
 					{
 						temp2[ntemp2] = "Sex";
 						ntemp2++;
 					}
-					else if(response[i].list[j].sabadoStatus)
+					if(response[i].list[j].sabadoStatus)
 					{
 						temp2[ntemp2] = "Sab";
 						ntemp2++;
 					}
-					else if(response[i].list[j].domingoStatus)
+					if(response[i].list[j].domingoStatus)
 					{
 						temp2[ntemp2] = "Dom";
 						ntemp2++;
