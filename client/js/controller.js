@@ -381,10 +381,10 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		console.log(obj);
 		console.log(JSON.stringify(obj));
 		
-
+		var a = '{"condicoes" : { "segundaStatus":1,"tercaStatus":0,"quartaStatus":0,"quintaStatus":0,"sextaStatus":0,"sabadoStatus":0,"domingoStatus":0,"idRequisito": 1,"horaInicio":4,"horaFim":6,"sunset":0,"sunrise":1,"EstadoTempo":[{"id":44}] ,"EstadoMares":[{"id":1}] }}'
 		var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
 	
-		$.post(apiurl, {'condicoes':obj}).then( function(response)
+		$.post(apiurl, {'condicoes':a}).then( function(response)
 		{
 			console.log(response);
 		});
