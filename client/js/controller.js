@@ -317,29 +317,6 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	}
 	
 	$scope.addRestriction = function(){
-		/* MEXE SO AQUI TRINITY xD */
-	
-		/*
-		{
-			"id": 1,
-			"segundaStatus": 2,
-			"tercaStatus": 3,
-			"quartaStatus": 4,
-			"quintaStatus": 5,
-			"sextaStatus": 6,
-			"sabadoStatus": 7,
-			"domingoStatus": 8,
-			"idRequisito": 9,
-			"estado": 10,
-			"horaInicio": 11,
-			"horaFim": 12,
-			"sunset": 13,
-			"sunrise": 14,
-			"EstadoTempo": null,
-			"EstadoMares": null,
-			"EstadoLua": null
-		}
-		*/
 		var selectedDays2 = [];
 		for(var i = 1; i<8; i++)
 		{
@@ -378,26 +355,19 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		
 		var horaInit = parseInt(document.getElementById('initTime').value.substring(document.getElementById('initTime').value, 2));
 		var horaFinit = parseInt(document.getElementById('endTime').value.substring(document.getElementById('endTime').value, 2));
-		/*var j = '{ "segundaStatus":' + selectedDays2[1] + ',' +
-				'"tercaStatus":' + selectedDays2[2] + ',' +
-				'"quartaStatus":' + selectedDays2[3] + ',' +
-				'"quintaStatus":' + selectedDays2[4] + ',' +
-				'"sextaStatus":' + selectedDays2[5] + ',' +
-				'"sabadoStatus":' + selectedDays2[6] + ',' +
-				'"domingoStatus":' + selectedDays2[7] + ',' +
-				'"idRequisito": 1,' +
-				'"horaInicio":' + horaInit + ',' +
-				'"horaFim":' + horaFinit+ ',' +
-				'"sunset":' + selectedSunPosition2[1] + ',' +
-				'"sunrise":' + selectedSunPosition2[2] + ',' +
-				"'EstadoTempo':" + estadoT + ',' +
-				'"\'EstadoMares\'":' + estadoM + ',' +
-				'"\'EstadoLua\'": null' + 
-				'}';
 		
-		console.log(j);
-		
-		var obj = JSON.parse(j);*/
+		var exist = false;
+		var existID = -1;
+		var local = document.getElementById('address').value;
+		for(var i=0; i<$scope.rests.length; i++)
+		{
+			if($scope.rests[i].local == local)
+			{
+				exist = true;
+				existID = parseInt($scope.rests[i].id);
+				i = $scope.rests.length;
+			}
+		}
 		
 		var obj = 
 		{ 
@@ -408,7 +378,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			'sextaStatus' : selectedDays2[5],
 			'sabadoStatus' : selectedDays2[6],
 			'domingoStatus' : selectedDays2[7],
-			'idRequisito' : 1,
+			'idRequisito' : existID,
 			'horaInicio' : horaInit, 
 			'horaFim' : horaFinit,
 			'sunset' : selectedSunPosition2[1],
@@ -421,17 +391,79 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		console.log(obj);
 		console.log(JSON.stringify(obj));
 		
-		var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
+		if(exist)
+		{
+			var apiurl2 = "http://joaotrindade.pt/api/AdicionaRequisito/";
+			
+			var portoMar = document.getElementById("portoSelect").value;
+			var idUser = $cookies.get("userid");
+			var obj2 = 
+			{ 
+				'localizacao' : globalDistrict,
+				'local' : local,
+				'Porto' : portoMar,
+				'idUtilizador' : idUser,
+				'coordenadas' : globalCoordenates,
+				'list' : null
+			}
 		
-		$.ajax({
-		  url:apiurl,
-		  type:"POST",
-		  data: JSON.stringify(obj),
-		  contentType:"application/json",
-		  success: function(response){
-			console.log(response);
-		  }
-		});	
+			$.ajax({
+			  url:apiurl2,
+			  type:"POST",
+			  data: JSON.stringify(obj2),
+			  contentType:"application/json",
+			  success: function(response){
+				console.log(response);
+				
+				/*var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
+				
+				var obj = 
+				{ 
+					'segundaStatus' : selectedDays2[1],
+					'tercaStatus' : selectedDays2[2],
+					'quartaStatus' : selectedDays2[3],
+					'quintaStatus' : selectedDays2[4],
+					'sextaStatus' : selectedDays2[5],
+					'sabadoStatus' : selectedDays2[6],
+					'domingoStatus' : selectedDays2[7],
+					'idRequisito' : existID,
+					'horaInicio' : horaInit, 
+					'horaFim' : horaFinit,
+					'sunset' : selectedSunPosition2[1],
+					'sunrise' : selectedSunPosition2[2],
+					'EstadoTempo' : estadoT,
+					'EstadoMares' : estadoM,
+					'EstadoLua' : null
+				}
+		
+				$.ajax({
+				  url:apiurl,
+				  type:"POST",
+				  data: JSON.stringify(obj),
+				  contentType:"application/json",
+				  success: function(response){
+					console.log(response);
+				  }
+				});	*/
+			  }
+			});
+			
+			
+		}
+		else
+		{
+			var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
+			
+			$.ajax({
+			  url:apiurl,
+			  type:"POST",
+			  data: JSON.stringify(obj),
+			  contentType:"application/json",
+			  success: function(response){
+				console.log(response);
+			  }
+			});	
+		}
 	}
 });
 
@@ -445,12 +477,15 @@ app.controller('parametersController2', function($scope,$routeParams)
 var geocoder;
 var map;
 var globalMarker = null;
+var globalRoute = "";
 var globalLocality = "";
 var globalDistrict = "";
+var globalCoordenates = "";
 
 function initialize() {
 	geocoder = new google.maps.Geocoder();
   	var latlng = new google.maps.LatLng(41.178522, -8.599528);
+	globalCoordenates = "41.178522 ; -8.599528";
   	var mapOptions = {
     	zoom: 10,
     	center: latlng
@@ -472,16 +507,24 @@ function initialize() {
 		
 		var geoApi = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.A + "," + position.F;
 		console.log(position.A + " " + position.F);
+		globalCoordenates = position.A + " ; " + position.F;
 		$.get(geoApi).then( function(response){
 			var results = response.results;
 			console.log(results);
 			
 			globalLocality = "";
 			globalDistrict = "";
+			globalRoute = "";
 			
 			//Funciona apenas com Portugal para já
 			for(var i=0; i< results[0].address_components.length ; i++)
 			{
+				if(results[0].address_components[i].types[0] == "route")
+				{
+					globalRoute= results[0].address_components[i].short_name;
+					//alert("Localidade = " + globalLocality );
+				}
+				
 				if(results[0].address_components[i].types[0] == "locality")
 				{
 					globalLocality = results[0].address_components[i].long_name;
@@ -495,8 +538,10 @@ function initialize() {
 				}
 			}
 			
-			if(globalLocality != "")
-				document.getElementById('address').value = globalLocality + " , " + globalDistrict;
+			if(globalRoute != "")
+				document.getElementById('address').value = globalRoute + ", " + globalLocality + ", " + globalDistrict;
+			else if(globalLocality != "")
+				document.getElementById('address').value = globalLocality + ", " + globalDistrict;
 			else
 				document.getElementById('address').value = globalDistrict;
 			
