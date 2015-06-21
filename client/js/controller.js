@@ -102,6 +102,9 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	$scope.Name = $cookies.get("username"); //$routeParams.Id
 	$scope.UpURL = $cookies.get("userurl");
 	
+	$scope.nRestrictions = 0;
+	$scope.rests = [];
+	
 	$scope.sWeather = selectedWeather;
 	$scope.sDays = selectedDays;
 	$scope.sSunPosition = selectedSunPosition;
@@ -114,6 +117,15 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	$.post(apiRequisito , {idUtilizador : userid}).then( function(response)
 	{
 		console.log(response);
+		if(response[0].StatusCode == 666)
+			$scope.nRestrictions = 0;
+		else
+		{
+			$scope.$apply(function () {
+				$scope.nRestrictions = response.length;
+				$scope.rests = response;
+			});
+		}
 	});
 	
 	$scope.IconURL = "Sun.png";
@@ -271,23 +283,6 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		
 		var estadoTids = [32,44,9,26,11,4,20,16,24,17];
 		var estadoTnames = ["Sunny","Partly Cloudy","Drizzle","Cloudy","Showers","Thunderstorms","Foggy","Snow","Windy","Hail"];
-		/*var estadoT = "[";
-		var n = 0;
-		for(var i = 1; i<11; i++)
-		{
-			if(selectedWeather[i])
-			{
-				estadoT += '{"id":' + estadoTids[i-1] + ',"nome":"' + estadoTnames[i-1] + '"},';
-				n++;
-			}
-		}
-		if(n!=0)
-		{
-			estadoT = estadoT.substring(estadoT, estadoT.length - 1);
-			estadoT+="]";
-		}
-		else
-			estadoT = "null";*/
 			
 		var estadoT = [];
 		for(var i = 1; i<11; i++)
@@ -298,14 +293,6 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				estadoT.push(temp);
 			}
 		}
-		
-		
-		/*var estadoM = "";
-		if(selectedTide == 2)
-			estadoM = 'null';
-		else
-			estadoM = '[{"id":' + selectedTide + ',"nome":"Tides"}]';
-		*/
 		
 		var estadoM = [];
 		if(selectedTide == 3) estadoM = null;

@@ -10,25 +10,12 @@
 			<div class="user_restrictions">
 				<div class="user_restrictions_title">As minhas restrições</div>
 				<div class="user_restrictions_container">
-					<div class="restriction">
-						<div class="restriction_city">Porto</div>
-						<div class="restrictionViceCity">
+					<div ng-repeat="r in rests" class="restriction">
+						<div class="restriction_city">{{r.local}}</div>
+						<div ng-repeat="conditions in r.list" class="restrictionViceCity">
 							<div class="restriction_icon" style="background-image: url(img/weather_icons/{{IconURL}})"></div>
 							<div class="restriction_data">
-								<div class="restriction_location">Rua das Flores, 699, Praia</div>
-								<div class="restriction_restrictions">
-									<div class="weather_restriction">Weather: Sunny</div>
-									<div class="tides_restriction">Tides: High</div>
-									<div class="moon_restriction">Moon: Full</div>
-									<div class="other_restriction"></div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="restrictionViceCity">
-							<div class="restriction_icon" style="background-image: url(img/weather_icons/{{IconURL}})"></div>
-							<div class="restriction_data">
-								<div class="restriction_location">Rua das Flores, 699, Praia</div>
+								<div class="restriction_location">Hora Inicio: {{conditions.horaInicio}}</div>
 								<div class="restriction_restrictions">
 									<div class="weather_restriction">Weather: Sunny</div>
 									<div class="tides_restriction">Tides: High</div>
@@ -186,7 +173,23 @@
 							<div ng-if="selectedTide!=2" class="select_hightide" ng-click="activeTide(2)" style="background-image: url(img/weather_icons/hightides2.png); position:relative;"></div>
 							<div class="select_title" style="margin-left:0px">Maré Alta</div>
 						</div>
+						
 					</div>
+					<select class="portoSelect" ng-if="selectedTide<=2" style="position:static;">
+					  <option value="2">Leixões</option>
+					  <option value="1">Viana do Castelo</option>
+					  <option value="3">Aveiro</option>
+					  <option value="4">Figueira da Foz</option>
+					  <option value="5">Peniche</option>
+					  <option value="6">Cascais</option>
+					  <option value="7">Lisboa</option>
+					  <option value="8">Setubal</option>
+					  <option value="9">Sesimbra</option>
+					  <option value="10">Sines</option>
+					  <option value="11">Lagos</option>
+					  <option value="12">Faro</option>
+					  <option value="13">Vila Real Santo Antonio</option>
+					</select> 
 					
 					
 					<div class="adicionarButton" ng-click="addRestriction()">Adicionar</div>

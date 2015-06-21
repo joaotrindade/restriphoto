@@ -564,11 +564,13 @@ body {
 }
 
 .selectDays{
-	margin-left: 185px;
+	margin-left: 160px;
 	margin-top: 20px;
 }
 
 .select_day{
+	width: 60px;
+	height: 31px;
 	display: inline-block;
 	color: rgba(112,63,128,1.0);
 	
@@ -576,7 +578,7 @@ body {
     font-size: 25px;
 	line-height: 30px;
 	vertical-align: top;
-	margin-right: 20px;
+	margin-right: 0px;
 	
 	-webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -702,5 +704,13 @@ body {
 .adicionarButton:hover{
 	background-color: rgba(162,123,178,1.0);
 	cursor: pointer;
+}
+
+.portoSelect{
+	position: static;
+	margin: 0px auto;
+	width: 150px;
+	display: block;
+	margin-top: 15px;
 }
 
