@@ -373,18 +373,21 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			'horaFim' : horaFinit,
 			'sunset' : selectedSunPosition2[1],
 			'sunrise' : selectedSunPosition2[2],
-			'EstadoTempo' : estadoT,
-			'EstadoMares' : estadoM,
+			"'EstadoTempo'" : estadoT,
+			"'EstadoMares'" : estadoM,
 			'EstadoLua' : null
 		}
 	
 		console.log(obj);
+		console.log(JSON.stringify(obj));
 		/*obj2 = JSON.stringify(obj);
 		var obj2 = obj2.replace('"EstadoTempo"', "'EstadoTempo'"); 
 		var obj2 = obj2.replace('"EstadoMares"', "'EstadoMares'"); 
 		console.log(obj2);
 		obj = jQuery.parseJSON(obj2)
 		console.log(JSON.stringify(obj));*/
+		
+		
 
 		var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
 	
