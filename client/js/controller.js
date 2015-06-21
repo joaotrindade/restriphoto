@@ -364,8 +364,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				selectedSunPosition2[i] = 0;
 		}
 		
-		var estadoTids = [32,44,9,26,11,4,20,16,24,17];
-		var estadoTnames = ["Sunny","Partly Cloudy","Drizzle","Cloudy","Showers","Thunderstorms","Foggy","Snow","Windy","Hail"];
+		var estadoTids = [32,44,26,9,11,20,4,16,17,24];
+		var estadoTnames = ["Sunny","Partly Cloudy","Cloudy","Drizzle","Showers","Foggy","Thunderstorms","Snow","Hail","Windy"];
 			
 		var estadoT = [];
 		for(var i = 1; i<11; i++)
@@ -410,8 +410,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			'idRequisito' : existID,
 			'horaInicio' : horaInit, 
 			'horaFim' : horaFinit,
-			'sunset' : selectedSunPosition2[1],
-			'sunrise' : selectedSunPosition2[2],
+			'sunset' : selectedSunPosition2[2],
+			'sunrise' : selectedSunPosition2[1],
 			'EstadoTempo' : estadoT,
 			'EstadoMares' : estadoM,
 			'EstadoLua' : null
