@@ -391,9 +391,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		$.ajax({
 		  url:apiurl,
 		  type:"POST",
-		  data: obj,
-		  contentType:"application/json; charset=utf-8",
-		  dataType:"json",
+		  data: JSON.stringify(obj),
+		  contentType:"application/json",
 		  success: function(response){
 			console.log(response);
 		  }
