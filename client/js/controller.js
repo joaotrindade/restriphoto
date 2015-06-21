@@ -226,6 +226,26 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 							ntemp2++;
 						}
 						response[i].list[j].etDays = temp2;
+						
+						var temp3 = [];
+						var myDays= ["Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom"]
+						var today=new Date();
+						var thisDay=today.getDay();
+						thisDay=myDays[thisDay];
+						
+						for(var k=0; k<response[i].list[j].estados.length; k++)
+						{
+							if(response[i].list[j].estados[k] != null)
+							{
+								if(response[i].list[j].estados[k] > 0)
+									temp3[k] = myDays[thisDay+response[i].list[j].estados[k]];
+								else
+									temp3[k] = "Hoje";
+							}
+							else
+								temp3[k] = "";
+						}
+						response[i].list[j].goodDays = temp3;
 					}
 				}
 				
