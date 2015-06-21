@@ -15,8 +15,8 @@
 						<div class="restriction_city">{{r.local}}</div>
 						<div ng-repeat="conditions in r.list" class="restrictionViceCity"  style="position:static;">
 							<div class="weatherConditions">
-								<span>Estados Tempo</span>
-								<div ng-repeat="i in conditions.etIcons" class="weatherCIcon" style="position:static; background-image: url(img/weather_icons/{{i}});"></div>
+								<span class="spanInlineText">Estados Tempo</span>
+								<div ng-repeat="i in conditions.etIcons" class="weatherCIcon" style="position:static; margin-top:5px; background-image: url(img/weather_icons/{{i}});"></div>
 							</div>
 							<div class="restriction_data">
 								<div class="restriction_location">Hora Inicio: {{conditions.horaInicio}}</div>

@@ -726,3 +726,15 @@ body {
 	background-size: contain;
 	background-position:center center;
 }
+
+.spanInlineText{
+	display: inline-block;
+	height: 25px;
+	color: #323232;
+	font-family: PTSANS;
+	font-size: 16px;
+	line-height: 25px;
+	vertical-align: top;
+	margin-top: 8px;
+	margin-left: 20px;
+}
