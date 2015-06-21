@@ -373,8 +373,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			'horaFim' : horaFinit,
 			'sunset' : selectedSunPosition2[1],
 			'sunrise' : selectedSunPosition2[2],
-			"'EstadoTempo'" : estadoT,
-			"'EstadoMares'" : estadoM,
+			'EstadoTempo' : estadoT,
+			'EstadoMares' : estadoM,
 			'EstadoLua' : null
 		}
 	
