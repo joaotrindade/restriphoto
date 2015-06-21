@@ -299,6 +299,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			'idUtilizador' : parseInt(idUser)
 		}
 		
+		console.log(obj);
+		
 		$.ajax({
 		  url:apiurl,
 		  type:"POST",
