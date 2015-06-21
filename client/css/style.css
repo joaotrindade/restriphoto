@@ -365,6 +365,21 @@ body {
 	margin-top: 8px;
 }
 
+.other_restriction{
+	display: inline-block;
+	width: 150px;
+	height: 25px;
+	margin-left:20px;
+	
+	color: rgba(50,50,50,1.0);
+	
+	font-family: PTSANS;
+    font-size: 16px;
+	line-height: 25px;
+	vertical-align: top;
+	margin-top: 8px;
+}
+
 /*ADD REST */
 
 .restriction_title{

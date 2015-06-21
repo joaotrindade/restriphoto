@@ -27,10 +27,10 @@
 								<div class="restriction_restrictions">
 									<div class="weather_restriction">Hora Inicio: {{conditions.horaInicio}}:00</div>
 									<div class="moon_restriction">Hora Fim: {{conditions.horaFim}}:00</div>
-									<div ng-if="conditions.EstadoMares[0] == 1"class="tides_restriction">Maré: Baixa</div>
-									<div ng-if="conditions.EstadoMares[0] == 2"class="tides_restriction">Maré: Alta</div>
-									<div ng-if="conditions.sunrise==1" class="other_restriction">Nascer do Sol</div>
-									<div ng-if="conditions.sunset==1" class="other_restriction">Pôr do Sol</div>
+									<div ng-if="conditions.EstadoMares[0].id == 1"class="tides_restriction" style="position:static;">Maré: Baixa</div>
+									<div ng-if="conditions.EstadoMares[0].id == 2"class="tides_restriction" style="position:static;">Maré: Alta</div>
+									<div ng-if="conditions.sunrise==1" class="other_restriction" style="position:static;">Nascer do Sol</div>
+									<div ng-if="conditions.sunset==1" class="other_restriction" style="position:static;">Pôr do Sol</div>
 								</div>
 							</div>
 						</div>
