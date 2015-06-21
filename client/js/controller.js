@@ -379,6 +379,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		}
 	
 		console.log(obj);
+		console.log(JSON.stringify(obj));
+		console.log(JSON.parse(obj));
 
 		var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
 	
