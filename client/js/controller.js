@@ -66,7 +66,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	var selectedWeather = []; 
 	var selectedDays = []; 
 	var selectedSunPosition = [];
-	var selectedTide = 2;
+	var selectedTide = 3;
 	
 	function resetSelectedW(){
 		var array = [];
@@ -105,7 +105,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 	$scope.sWeather = selectedWeather;
 	$scope.sDays = selectedDays;
 	$scope.sSunPosition = selectedSunPosition;
-	$scope.selectedTide = 2;
+	$scope.selectedTide = 3;
 	
 	initialize();
 	
@@ -222,8 +222,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		}
 		else
 		{
-			selectedTide = 2;
-			$scope.selectedTide = 2;
+			selectedTide = 3;
+			$scope.selectedTide = 3;
 		}
 	}
 	
@@ -308,7 +308,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		*/
 		
 		var estadoM = [];
-		if(selectedTide == 2) estadoM = null;
+		if(selectedTide == 3) estadoM = null;
 		else
 			estadoM.push({'id':selectedTide});
 		
@@ -354,29 +354,13 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			"'EstadoLua'" : null
 		}
 
-		
-		console.log(JSON.stringify(obj));
-		
 		var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
 	
-		console.log({'condicoes':obj});
-
 		$.post(apiurl, {'condicoes':obj}).then( function(response)
 		{
 			console.log(response);
 		});
-		
-		$.ajax({
-			url: apiurl,
-			type: 'POST',
-			data: {'condicoes':obj},
-			contentType: 'application/json',
-			success: function(json){
-				console.log(response);
-			}
-			
-		});
-		
+				
 	}
 });
 
