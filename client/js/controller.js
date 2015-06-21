@@ -294,7 +294,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		{
 			if(selectedWeather[i])
 			{
-				var temp = {'id': estadoTids[i]};
+				var temp = {"id": estadoTids[i]};
 				estadoT.push(temp);
 			}
 		}
@@ -349,9 +349,9 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			'horaFim' : horaFinit,
 			'sunset' : selectedSunPosition2[1],
 			'sunrise' : selectedSunPosition2[2],
-			'EstadoTempo' : estadoT,
-			'EstadoMares' : estadoM,
-			'EstadoLua' : null
+			"'EstadoTempo'" : estadoT,
+			"'EstadoMares'" : estadoM,
+			"'EstadoLua'" : null
 		}
 
 		
