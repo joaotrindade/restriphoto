@@ -6,6 +6,7 @@ app.config( function($routeProvider)
 		.when("/", {templateUrl:'partials/login.html', controller:'loginController'})
 		.when("/about", {templateUrl:'partials/about.html', controller:'aboutController'})
 		.when("/user/:ID", {templateUrl: 'partials/user.html', controller: 'userController'})
+		.when("/register", {templateUrl:'partials/register.html', controller:'registerController'})
 		.when("/parameters/:Id1/:Id2", {templateUrl: 'partials/parameters.html', controller: 'parametersController2'});
 });
 
@@ -49,6 +50,32 @@ app.controller('loginController', function($scope,$location,$timeout,$routeParam
 			{
 				alert("User not in the database");
 			}
+		});
+		
+	}
+});
+
+app.controller('registerController', function($scope,$location,$timeout,$routeParams,$cookies)
+{
+	
+	$scope.regist = function(){
+	
+		var name = document.getElementById("register_name").value;
+		var email = document.getElementById("register_email").value;
+		var password = document.getElementById("register_password").value;
+		var url = document.getElementById("register_url").value;
+		
+		var apiurl = "http://joaotrindade.pt:80/api/Register/";
+		
+		$.post(apiurl, {Name : name, Url : url, Password : password, Email : email}).then( function(response)
+		{
+			console.log(response);
+			
+			$location.path("/");
+			 
+			$timeout(function () { 
+				$scope.currentPath = $location.path();
+			},0)
 		});
 		
 	}
