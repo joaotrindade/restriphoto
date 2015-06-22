@@ -228,7 +228,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 						}
 						response[i].list[j].etDays = temp2;
 						
-						var temp3 = ["","","","",""];
+						var temp3 = [null,null,null,null,null];
 						var myDays= ["Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom"]
 						var today=new Date();
 						var thisDay=today.getDay();
@@ -256,7 +256,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 									temp3[k] = "Hoje";
 							}
 							else
-								temp3[k] = "";
+								temp3[k] = null;
 						}
 						response[i].list[j].goodDays = temp3;
 					}
