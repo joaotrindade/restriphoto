@@ -232,6 +232,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 						var myDays= ["Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom"]
 						var today=new Date();
 						var thisDay=today.getDay();
+						console.log(thisDay);
 						thisDay=myDays[thisDay];
 						console.log(thisDay);
 
