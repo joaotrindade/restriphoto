@@ -28,7 +28,7 @@ app.controller('loginController', function($scope,$location,$timeout,$routeParam
 		
 		$.post(apiurl, {Email : username, Password : password}).then( function(response)
 		{
-			console.log(response);
+			//console.log(response);
 			
 			if(response.StatusCode != 666)
 			{
@@ -73,7 +73,7 @@ app.controller('registerController', function($scope,$location,$timeout,$routePa
 		
 		$.post(apiurl, {Name : name, Url : url, Password : password, Email : email}).then( function(response)
 		{
-			console.log(response);
+			//console.log(response);
 			
 			$location.path("/");
 			 
@@ -148,8 +148,6 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		var userid = $cookies.get("userid");
 		$.post(apiRequisito , {idUtilizador : userid}).then( function(response)
 		{
-			console.log("here");
-			console.log(response);
 			if(response[0].StatusCode == 666)
 				$scope.nRestrictions = 0;
 			else
@@ -229,26 +227,13 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 						response[i].list[j].etDays = temp2;
 						
 						var temp3 = [];
-						var myDays= ["Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom"]
+						var myDays= ["Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom"];
 						var today=new Date();
 						var thisDay=today.getDay();
-						//console.log(thisDay);
-						//thisDay=myDays[thisDay];
-						//console.log(thisDay);
+
 						var contador = 0 ;
 						for(var k=0; k<response[i].list[j].estados.length; k++)
 						{
-							
-							//console.log("req:");
-							//console.log(i);
-							//console.log("cond:");
-							//console.log(j);
-							//console.log("estado:");
-							//console.log(k);
-							//console.log("value:");
-							//console.log(response[i].list[j].estados[k]);
-							//console.log("mydays:");
-							//console.log(myDays[thisDay+response[i].list[j].estados[k]]);
 							if(response[i].list[j].estados[k] != 0)
 							{
 								if(response[i].list[j].estados[k] > 1)
@@ -258,14 +243,10 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 									
 								contador++;
 							}
-							
 						}
 						response[i].list[j].goodDays = temp3.reverse();
 					}
 				}
-				console.log("altered response");
-				console.log(response);
-				
 				$scope.$apply(function () {
 					$scope.nRestrictions = response.length;
 					$scope.rests = response;
@@ -299,7 +280,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				globalDistrict = "";
 				globalRoute = "";
 				
-				console.log(results);
+				//console.log(results);
 				var level2 = false;
 				//Funciona apenas com Portugal para já
 				for(var i=0; i< results[0].address_components.length ; i++)
@@ -366,7 +347,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			'idUtilizador' : parseInt(idUser)
 		}
 		
-		console.log(JSON.stringify(obj));
+		//console.log(JSON.stringify(obj));
 		
 		$.ajax({
 		  url:apiurl,
@@ -374,7 +355,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		  data: JSON.stringify(obj),
 		  contentType:"application/json",
 		  success: function(response){
-			console.log(response);
+			//console.log(response);
 			getRestris();
 		  }
 		});	
@@ -512,8 +493,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			'EstadoLua' : null
 		}
 	
-		console.log(obj);
-		console.log(JSON.stringify(obj));
+		//console.log(obj);
+		//console.log(JSON.stringify(obj));
 		
 		if(!exist)
 		{
@@ -531,14 +512,14 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				'list' : null
 			}
 			
-			console.log(JSON.stringify(obj2));
+			//console.log(JSON.stringify(obj2));
 			$.ajax({
 			  url:apiurl2,
 			  type:"POST",
 			  data: JSON.stringify(obj2),
 			  contentType:"application/json",
 			  success: function(response){
-				console.log(response);
+				//console.log(response);
 				
 				var apiurl = "http://joaotrindade.pt/api/AdicionaCondicao/";
 				
@@ -567,7 +548,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 				  data: JSON.stringify(obj),
 				  contentType:"application/json",
 				  success: function(response){
-					console.log(response);
+					//console.log(response);
 					resetConditions();
 					getRestris();
 				  }
@@ -587,7 +568,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 			  data: JSON.stringify(obj),
 			  contentType:"application/json",
 			  success: function(response){
-				console.log(response);
+				//console.log(response);
 				resetConditions();
 				getRestris();
 			  }
@@ -649,11 +630,11 @@ function initialize() {
 		map.setCenter(position);
 		
 		var geoApi = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.A + "," + position.F;
-		console.log(position.A + " " + position.F);
+		//console.log(position.A + " " + position.F);
 		globalCoordenates = position.A + " ; " + position.F;
 		$.get(geoApi).then( function(response){
 			var results = response.results;
-			console.log(results);
+			//console.log(results);
 			
 			globalLocality = "";
 			globalDistrict = "";
