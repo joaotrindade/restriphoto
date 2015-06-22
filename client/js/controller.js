@@ -233,8 +233,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 						var today=new Date();
 						var thisDay=today.getDay();
 						console.log(thisDay);
-						thisDay=myDays[thisDay];
-						console.log(thisDay);
+						//thisDay=myDays[thisDay];
+						//console.log(thisDay);
 
 						for(var k=0; k<response[i].list[j].estados.length; k++)
 						{
