@@ -148,6 +148,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 		var userid = $cookies.get("userid");
 		$.post(apiRequisito , {idUtilizador : userid}).then( function(response)
 		{
+			console.log("here");
 			console.log(response);
 			if(response[0].StatusCode == 666)
 				$scope.nRestrictions = 0;
@@ -232,7 +233,8 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 						var today=new Date();
 						var thisDay=today.getDay();
 						thisDay=myDays[thisDay];
-						
+						console.log("list j");
+						console.log(response[i].list[j]);
 						for(var k=0; k<response[i].list[j].estados.length; k++)
 						{
 							if(response[i].list[j].estados[k] != null)
