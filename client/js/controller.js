@@ -242,16 +242,16 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 							//console.log(i);
 							//console.log("cond:");
 							//console.log(j);
-							console.log("estado:");
-							console.log(k);
-							console.log("value:");
-							console.log(response[i].list[j].estados[k]);
-							console.log("mydays:");
-							console.log(myDays[thisDay+response[i].list[j].estados[k]]);
+							//console.log("estado:");
+							//console.log(k);
+							//console.log("value:");
+							//console.log(response[i].list[j].estados[k]);
+							//console.log("mydays:");
+							//console.log(myDays[thisDay+response[i].list[j].estados[k]]);
 							if(response[i].list[j].estados[k] != 0)
 							{
 								if(response[i].list[j].estados[k] > 1)
-									temp3[k] = myDays[thisDay+response[i].list[j].estados[k]];
+									temp3[k] = myDays[thisDay+response[i].list[j].estados[k]-1];
 								else
 									temp3[k] = "Hoje";
 							}
