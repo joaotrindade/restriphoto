@@ -228,7 +228,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 						}
 						response[i].list[j].etDays = temp2;
 						
-						var temp3 = [null,null,null,null,null];
+						var temp3 = [];
 						var myDays= ["Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom","Seg","Ter","Qua","Qui","Sex","Sab","Dom"]
 						var today=new Date();
 						var thisDay=today.getDay();
@@ -238,6 +238,7 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 
 						for(var k=0; k<response[i].list[j].estados.length; k++)
 						{
+							var contador = 0 ;
 							//console.log("req:");
 							//console.log(i);
 							//console.log("cond:");
@@ -251,14 +252,13 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 							if(response[i].list[j].estados[k] != 0)
 							{
 								if(response[i].list[j].estados[k] > 1)
-									temp3[k] = myDays[thisDay+response[i].list[j].estados[k]-1];
+									temp3[contador] = myDays[thisDay+response[i].list[j].estados[k]-1];
 								else
-									temp3[k] = "Hoje";
+									temp3[contador] = "Hoje";
 							}
-							else
-								temp3[k] = null;
+							contador++;
 						}
-						response[i].list[j].goodDays = temp3;
+						response[i].list[j].goodDays = temp3.reverse();
 					}
 				}
 				console.log("altered response");
