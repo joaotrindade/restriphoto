@@ -235,10 +235,10 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 						//console.log(thisDay);
 						//thisDay=myDays[thisDay];
 						//console.log(thisDay);
-
+						var contador = 0 ;
 						for(var k=0; k<response[i].list[j].estados.length; k++)
 						{
-							var contador = 0 ;
+							
 							//console.log("req:");
 							//console.log(i);
 							//console.log("cond:");
