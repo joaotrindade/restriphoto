@@ -233,9 +233,20 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 						var today=new Date();
 						var thisDay=today.getDay();
 						thisDay=myDays[thisDay];
+						console.log(thisDay);
 
 						for(var k=0; k<response[i].list[j].estados.length; k++)
 						{
+							console.log("req:");
+							console.log(i);
+							console.log("cond:");
+							console.log(j);
+							console.log("estado:");
+							console.log(k);
+							console.log("value:");
+							console.log(response[i].list[j].estados[k]);
+							console.log("mydays:");
+							console.log(myDays[thisDay+response[i].list[j].estados[k]]);
 							if(response[i].list[j].estados[k] != 0)
 							{
 								if(response[i].list[j].estados[k] > 0)
