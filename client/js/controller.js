@@ -255,8 +255,10 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 									temp3[contador] = myDays[thisDay+response[i].list[j].estados[k]-1];
 								else
 									temp3[contador] = "Hoje";
+									
+								contador++;
 							}
-							contador++;
+							
 						}
 						response[i].list[j].goodDays = temp3.reverse();
 					}
