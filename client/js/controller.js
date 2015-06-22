@@ -233,11 +233,10 @@ app.controller('userController', function($scope,$routeParams,$cookies,$window)
 						var today=new Date();
 						var thisDay=today.getDay();
 						thisDay=myDays[thisDay];
-						console.log("list j");
-						console.log(response[i].list[j]);
+
 						for(var k=0; k<response[i].list[j].estados.length; k++)
 						{
-							if(response[i].list[j].estados[k] != null)
+							if(response[i].list[j].estados[k] != 0)
 							{
 								if(response[i].list[j].estados[k] > 0)
 									temp3[k] = myDays[thisDay+response[i].list[j].estados[k]];
